@@ -47,34 +47,32 @@
 !image/cache/index.html
 
 # ---------------------------------------
-# Storage
+# Storage TMP files
 # ---------------------------------------
 
-# System
-/system/storage/*
-!system/storage/*/index.html
+# You need to define all dirs separately (!)s
+
+# Cache Files
+system/storage/download/*
+!system/storage/download/index.html
 
 # Download Files
-#system/storage/download/*
-#!system/storage/download/index.html
+system/storage/download/*
+!system/storage/download/index.html
 
-# ---------------------------------------
 # Logs
-# ---------------------------------------
-#/system/storage/logs/*
-#!system/storage/logs/index.html
-
-# ---------------------------------------
-# TMP files
-# ---------------------------------------
-
-# Extension install
-#system/storage/upload/*
-#!system/storage/upload/index.html
+/system/storage/logs/*
+!system/storage/logs/index.html
 
 # Modifications
-#system/storage/modification/*
-#!system/storage/modification/index.html
+system/storage/modification/*
+!system/storage/modification/index.html
+
+# Extension install
+system/storage/upload/*
+!system/storage/upload/index.html
+
+
 
 
 
