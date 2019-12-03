@@ -1,6 +1,7 @@
 <?php
 // Version
 define('VERSION', '2.3.0.2.3');
+define('OCR_VERSION', '0.9.0');
 
 // Configuration
 if (is_file('config.php')) {

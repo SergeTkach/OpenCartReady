@@ -225,17 +225,17 @@ CREATE TABLE `oc_attribute_description` (
 --
 
 INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
-(1, 1, 'Description'),
-(2, 1, 'No. of Cores'),
-(4, 1, 'test 1'),
-(5, 1, 'test 2'),
-(6, 1, 'test 3'),
-(7, 1, 'test 4'),
-(8, 1, 'test 5'),
-(9, 1, 'test 6'),
-(10, 1, 'test 7'),
-(11, 1, 'test 8'),
-(3, 1, 'Clockspeed'),
+(1, 1, 'Описание'),
+(2, 1, 'Кол-во ядер'),
+(4, 1, 'Тест 1'),
+(5, 1, 'Тест 2'),
+(6, 1, 'Тест 3'),
+(7, 1, 'Тест 4'),
+(8, 1, 'Тест 5'),
+(9, 1, 'Тест 6'),
+(10, 1, 'Тест 7'),
+(11, 1, 'Тест 8'),
+(3, 1, 'Тактовая частота'),
 (1, 2, 'Description'),
 (2, 2, 'No. of Cores'),
 (4, 2, 'test 1'),
@@ -246,7 +246,18 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) V
 (9, 2, 'test 6'),
 (10, 2, 'test 7'),
 (11, 2, 'test 8'),
-(3, 2, 'Clockspeed');
+(3, 2, 'Clockspeed'),
+(1, 3, 'Опис'),
+(2, 3, 'Кількість ядер'),
+(4, 3, 'Тест 1'),
+(5, 3, 'Тест 2'),
+(6, 3, 'Тест 3'),
+(7, 3, 'Тест 4'),
+(8, 3, 'Тест 5'),
+(9, 3, 'Тест 6'),
+(10, 3, 'Тест 7'),
+(11, 3, 'Тест 8'),
+(3, 3, 'Тактова частота');
 
 -- --------------------------------------------------------
 
@@ -291,13 +302,17 @@ CREATE TABLE `oc_attribute_group_description` (
 
 INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
 (3, 1, 'Память'),
-(4, 1, 'Technical'),
+(4, 1, 'Технические данные'),
 (5, 1, 'Материнская плата'),
 (6, 1, 'Процессор'),
 (3, 2, 'Memory'),
 (4, 2, 'Technical'),
 (5, 2, 'Motherboard'),
-(6, 2, 'Processor');
+(6, 2, 'Processor'),
+(3, 3, 'Память'),
+(4, 3, 'Технічні дані'),
+(5, 3, 'Материнська плата'),
+(6, 3, 'Процесор');
 
 -- --------------------------------------------------------
 
@@ -359,6 +374,7 @@ INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `t
 (80, 7, 1, 'MacBookAir', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
 (97, 8, 1, 'Starbucks', '', 'catalog/demo/manufacturer/starbucks.png', 0),
 (98, 8, 1, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0),
+
 (99, 7, 2, 'iPhone 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
 (100, 6, 2, 'HP Banner', 'index.php?route=product/manufacturer/info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
 (101, 8, 2, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
@@ -372,7 +388,23 @@ INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `t
 (109, 8, 2, 'Disney', '', 'catalog/demo/manufacturer/disney.png', 0),
 (110, 7, 2, 'MacBookAir', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
 (111, 8, 2, 'Starbucks', '', 'catalog/demo/manufacturer/starbucks.png', 0),
-(112, 8, 2, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0);
+(112, 8, 2, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0),
+
+(113, 7, 3, 'iPhone 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
+(114, 6, 3, 'HP Banner', 'index.php?route=product/manufacturer/info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
+(115, 8, 3, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
+(116, 8, 3, 'RedBull', '', 'catalog/demo/manufacturer/redbull.png', 0),
+(117, 8, 3, 'Sony', '', 'catalog/demo/manufacturer/sony.png', 0),
+(118, 8, 3, 'Coca Cola', '', 'catalog/demo/manufacturer/cocacola.png', 0),
+(119, 8, 3, 'Burger King', '', 'catalog/demo/manufacturer/burgerking.png', 0),
+(120, 8, 3, 'Canon', '', 'catalog/demo/manufacturer/canon.png', 0),
+(121, 8, 3, 'Harley Davidson', '', 'catalog/demo/manufacturer/harley.png', 0),
+(122, 8, 3, 'Dell', '', 'catalog/demo/manufacturer/dell.png', 0),
+(123, 8, 3, 'Disney', '', 'catalog/demo/manufacturer/disney.png', 0),
+(124, 7, 3, 'MacBookAir', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
+(125, 8, 3, 'Starbucks', '', 'catalog/demo/manufacturer/starbucks.png', 0),
+(127, 8, 3, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0);
+
 
 -- --------------------------------------------------------
 
@@ -560,8 +592,45 @@ INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `de
 (55, 2, 'test 23', '', '', '', '', ''),
 (56, 2, 'test 24', '', '', '', '', ''),
 (57, 2, 'Tablets', '', '', '', '', ''),
-(58, 2, 'test 25', '', '', '', '', '');
-
+(58, 2, 'test 25', '', '', '', '', ''),
+(28, 3, 'Мониторы', '', '', '', '', ''),
+(33, 3, 'Камеры', '', '', '', '', ''),
+(32, 3, 'Веб-камеры', '', '', '', '', ''),
+(31, 3, 'Сканеры', '', '', '', '', ''),
+(30, 3, 'Принтеры', '', '', '', '', ''),
+(29, 3, 'Мышки', '', '', '', '', ''),
+(27, 3, 'Mac', '', '', '', '', ''),
+(26, 3, 'PC', '', '', '', '', ''),
+(17, 3, 'Програмное обеспечение', '', '', '', '', ''),
+(25, 3, 'Компоненты', '', '', '', '', ''),
+(24, 3, 'Телефоны и PDA', '', '', '', '', ''),
+(20, 3, 'Компьютеры', '&lt;p&gt;\r\n	Пример текста в описания категории&lt;/p&gt;\r\n', 'H1 заголовок Комьпютеров', '', '', ''),
+(35, 3, 'test 1', '', '', '', '', ''),
+(36, 3, 'test 2', '', '', '', '', ''),
+(37, 3, 'test 5', '', '', '', '', ''),
+(38, 3, 'test 4', '', '', '', '', ''),
+(39, 3, 'test 6', '', '', '', '', ''),
+(40, 3, 'test 7', '', '', '', '', ''),
+(41, 3, 'test 8', '', '', '', '', ''),
+(42, 3, 'test 9', '', '', '', '', ''),
+(43, 3, 'test 11', '', '', '', '', ''),
+(34, 3, 'MP3 Плееры', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', '', '', '', ''),
+(18, 3, 'Ноутбуки', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', '', '', '', ''),
+(44, 3, 'test 12', '', '', '', '', ''),
+(45, 3, 'Windows', '', '', '', '', ''),
+(46, 3, 'Macs', '', '', '', '', ''),
+(47, 3, 'test 15', '', '', '', '', ''),
+(48, 3, 'test 16', '', '', '', '', ''),
+(49, 3, 'test 17', '', '', '', '', ''),
+(50, 3, 'test 18', '', '', '', '', ''),
+(51, 3, 'test 19', '', '', '', '', ''),
+(52, 3, 'test 20', '', '', '', '', ''),
+(53, 3, 'test 21', '', '', '', '', ''),
+(54, 3, 'test 22', '', '', '', '', ''),
+(55, 3, 'test 23', '', '', '', '', ''),
+(56, 3, 'test 24', '', '', '', '', ''),
+(57, 3, 'Планшеты', '', '', '', '', ''),
+(58, 3, 'test 25', '', '', '', '', '');
 -- --------------------------------------------------------
 
 --
@@ -1119,9 +1188,9 @@ CREATE TABLE `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(1, 'Рубль', 'RUB', '', ' р.', '2', 1.00000000, 1, '2015-11-10 17:33:53'),
-(2, 'US Dollar', 'USD', '$', '', '2', 0.01550000, 1, '2015-11-10 17:33:53'),
-(3, 'Euro', 'EUR', '', '€', '2', 0.01440000, 1, '2015-11-10 17:33:53');
+(1, 'Рубль', 'RUB', '', ' руб.', '2', 1.00000000, 1, '2019-09-27 12:29:59'),
+(2, 'US Dollar', 'USD', '$ ', '', '2', 0.01550000, 1, '2015-11-10 17:33:53'),
+(3, 'Гривня', 'UAH', '', ' грн', '2', 0.01440000, 1, '2019-09-27 15:56:55');
 
 -- --------------------------------------------------------
 
@@ -1659,13 +1728,17 @@ CREATE TABLE `oc_information_description` (
 
 INSERT INTO `oc_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_h1`, `meta_description`, `meta_keyword`) VALUES
 (4, 1, 'О нас', '&lt;p&gt;\r\n	О нас&lt;/p&gt;\r\n', '', '', '', ''),
-(5, 1, 'Условия соглашения', '&lt;p&gt;\r\n	Условия соглашения&lt;/p&gt;\r\n', '', '', '', ''),
+(5, 1, 'Пользовательское соглашение', '&lt;p&gt;\r\n	Условия соглашения&lt;/p&gt;\r\n', '', '', '', ''),
 (3, 1, 'Политика безопасности', '&lt;p&gt;\r\n	Политика безопасности&lt;/p&gt;\r\n', '', '', '', ''),
 (6, 1, 'Информация о доставке', '&lt;p&gt;\r\n	Информация о доставке&lt;/p&gt;\r\n', '', '', '', ''),
 (4, 2, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', '', '', '', ''),
 (5, 2, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', '', '', '', ''),
 (3, 2, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', '', '', '', ''),
-(6, 2, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', '', '', '', '');
+(6, 2, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', '', '', '', ''),
+(4, 3, 'Про нас', '&lt;p&gt;\r\n	О нас&lt;/p&gt;\r\n', '', '', '', ''),
+(5, 3, 'Угода користувача', '&lt;p&gt;\r\n	Условия соглашения&lt;/p&gt;\r\n', '', '', '', ''),
+(3, 3, 'Політика безпеки', '&lt;p&gt;\r\n	Политика безопасности&lt;/p&gt;\r\n', '', '', '', ''),
+(6, 3, 'Інформація про доставку', '&lt;p&gt;\r\n	Информация о доставке&lt;/p&gt;\r\n', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1729,8 +1802,9 @@ CREATE TABLE `oc_language` (
 --
 
 INSERT INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
-(1, 'Russian', 'ru-ru', 'ru_RU.UTF-8,ru_RU,russian', 'ru.png', 'russian', 1, 1),
-(2, 'English', 'en-gb', 'en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 2, 1);
+(1, 'Русский', 'ru-ru', 'ru_RU.UTF-8,ru_RU,russian', 'ru.png', 'russian', 1, 1),
+(2, 'English', 'en-gb', 'en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 3, 1),
+(3, 'Українська', 'uk-ua', 'uk_UA.UTF-8,uk_UA,uk-ua,ukrainian', 'ua.png', 'ukrainian', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -1951,16 +2025,22 @@ CREATE TABLE `oc_manufacturer_description` (
 INSERT INTO `oc_manufacturer_description` (`manufacturer_id`, `language_id`, `name`, `description`, `meta_title`, `meta_h1`, `meta_description`, `meta_keyword`) VALUES
 (5, 1, 'HTC', '', 'HTC', '', '', ''),
 (5, 2, 'HTC', '', 'HTC', '', '', ''),
+(5, 3, 'HTC', '', 'HTC', '', '', ''),
 (6, 1, 'Palm', '', 'Palm', '', '', ''),
 (6, 2, 'Palm', '', 'Palm', '', '', ''),
+(6, 3, 'Palm', '', 'Palm', '', '', ''),
 (7, 1, 'Hewlett-Packard', '', 'Hewlett-Packard', '', '', ''),
 (7, 2, 'Hewlett-Packard', '', 'Hewlett-Packard', '', '', ''),
+(7, 3, 'Hewlett-Packard', '', 'Hewlett-Packard', '', '', ''),
 (8, 1, 'Apple', '', 'Apple', '', '', ''),
 (8, 2, 'Apple', '', 'Apple', '', '', ''),
+(8, 3, 'Apple', '', 'Apple', '', '', ''),
 (9, 1, 'Canon', 'Пример текста в описания производителя', 'Canon', '', '', ''),
 (9, 2, 'Canon', 'Example of manufacturer description text', 'Canon', '', '', ''),
+(9, 3, 'Canon', 'Example of manufacturer description text', 'Canon', '', '', ''),
 (10, 1, 'Sony', '', 'Sony', '', '', ''),
-(10, 2, 'Sony', '', 'Sony', '', '', '');
+(10, 2, 'Sony', '', 'Sony', '', '', ''),
+(10, 3, 'Sony', '', 'Sony', '', '', '');
 
 --
 -- Table structure for table `oc_manufacturer_to_store`
@@ -2465,29 +2545,68 @@ CREATE TABLE `oc_order_status` (
 --
 
 INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
-(1, 1, 'Ожидание'),
-(2, 1, 'В обработке'),
-(3, 1, 'Доставлено'),
-(7, 1, 'Отменено'),
+(1, 1, 'Заказ занесен в базу'),
+(2, 1, 'Менеджер начал обработку заказа'),
+-- зачастую речь идет об онлайн-платеже, которые передает статус success. Но ведь и передача денег на карту, также может быть помечен этим статусом. Но кто станет заморачиваться?
+-- https://www.liqpay.ua/documentation/api/information/status/doc
+(3, 1, 'Платеж получен'),
+-- А еще может быть уведомление о том, что товар доставлен в отделение и готов к выдачи
+(4, 1, 'Товар (ы) отправлен (ы)'), 
 (5, 1, 'Сделка завершена'),
-(8, 1, 'Возврат'),
-(9, 1, 'Отмена и аннулирование'),
-(10, 1, 'Неудавшийся'),
-(11, 1, 'Возмещенный'),
-(12, 1, 'Полностью измененный'),
-(13, 1, 'Полный возврат'),
-(1, 2, 'Pending'),
-(2, 2, 'Processing'),
-(3, 2, 'Shipped'),
-(7, 2, 'Canceled'),
+(6, 1, 'Ожидание онлайн-оплаты'),
+(7, 1, 'Онлайн-оплата отменена'),
+(8, 1, 'Полный возврат (для AntiFraud)'),
+-- https://www.paypal-community.com/t5/PayPal-Reporting/IPN-mesage-order-and-payment-Canceled-Reversal/td-p/1454829
+(9, 1, 'Отмена возврата денег - PayPal'),
+-- Voided, failure -- сбой при платеже или failure по https://www.liqpay.ua/documentation/api/information/status/doc
+(10, 1, 'Неудавшийся онлайн-платеж'),
+(11, 1, 'Деньги возвращены'),
+-- системой онлайн- https://www.paypal-community.com/t5/PayPal-Reporting/IPN-mesage-order-and-payment-Canceled-Reversal/td-p/1454829
+(12, 1, 'Онлайн платеж возвращен'),
+-- https://ru.wikipedia.org/wiki/Возвратный_платёж
+(13, 1, 'Возвратный платеж'), 
+(14, 1, 'Просрочка платежа'),
+(15, 1, 'Обработан'),
+-- https://www.liqpay.ua/documentation/api/information/status/doc
+(16, 1, 'Некорректно заполнены данные в платежной системе'),
+(17, 1, 'Регулярный платеж успешно оформлен'), 
+(18, 1, 'Отписка от регулярного платежа'),
+(1, 2, 'Received'),
+(2, 2, 'Processing by manager'),
+(3, 2, 'Success'), 
+(4, 2, 'Shipped'),
 (5, 2, 'Complete'),
-(8, 2, 'Denied'),
+(6, 2, 'Pending'),
+(7, 2, 'Canceled'),
+(8, 2, 'Canceled (for AntiFraud)'),
 (9, 2, 'Canceled Reversal'),
 (10, 2, 'Failed'),
 (11, 2, 'Refunded'),
 (12, 2, 'Reversed'),
-(13, 2, 'Chargeback');
-
+(13, 2, 'Chargeback'),
+(14, 2, 'Expired'),
+(15, 2, 'Processed'),
+(16, 2, 'Error'), 
+(17, 2, 'Subscribed'),
+(18, 2, 'Unsubscribed'),
+(1, 3, 'Замовлення збережно в базі'),
+(2, 3, 'Менеджер почав обробку замовлення'),
+(3, 3, 'Платіж отримано'),
+(4, 3, 'Товар (и) відправлений (і)'),
+(5, 3, 'Угода завершена'),
+(6, 3, 'Очікування онлайн оплати'),
+(7, 3, 'Онлайн оплата відмінена'),
+(8, 3, 'Відміна (для AntiFraud)'),
+(9, 3, 'Скасування повернення грошей - PayPal'),
+(10, 3, 'Невдалий онлайн платіж'),
+(11, 3, 'Гроші повернені'),
+(12, 3, 'Онлайн платіж повернений'),
+(13, 3, 'Зворотний платіж'),
+(14, 3, 'Прострочений платіж'),
+(15, 3, 'Опрацьовано'),
+(16, 3, 'Некоректно заповнені дані у платній системі'),
+(17, 3, 'Регулярний платіж успішно оформлений'),
+(18, 3, 'Відписка від регулярного платежу');
 -- --------------------------------------------------------
 
 --
@@ -2625,7 +2744,12 @@ INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`,
 (47, 2, 2, '4'),
 (43, 4, 2, '8gb'),
 (42, 3, 2, '100mhz'),
-(47, 4, 2, '16GB');
+(47, 4, 2, '16GB'),
+(43, 2, 3, '1'),
+(47, 2, 3, '4'),
+(43, 4, 3, '8гб'),
+(42, 3, 3, '100мгц'),
+(47, 4, 3, '16ГБ');
 
 -- --------------------------------------------------------
 
@@ -2691,7 +2815,26 @@ INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `desc
 (35, 2, 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', 'Product 8', '', '', ''),
 (48, 2, 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'iPod Classic', '', '', ''),
 (40, 2, 'iPhone', '&lt;p class=&quot;intro&quot;&gt;\r\n	iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', 'iPhone', '', '', ''),
-(28, 2, 'HTC Touch HD', '&lt;p&gt;\r\n	HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&amp;quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Processor Qualcomm&amp;reg; MSM 7201A&amp;trade; 528 MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Operating System&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Memory: 512 MB ROM, 288 MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Device Control via HTC TouchFLO&amp;trade; 3D &amp;amp; Touch-sensitive front panel buttons&lt;/li&gt;\r\n	&lt;li&gt;\r\n		GPS and A-GPS ready&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth&amp;reg; 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wi-Fi&amp;reg;: IEEE 802.11 b/g&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HTC ExtUSB&amp;trade; (11-pin mini-USB 2.0)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		5 megapixel color camera with auto focus&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VGA CMOS color camera&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;/li&gt;\r\n	&lt;li&gt;\r\n		40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Expansion Slot: microSD&amp;trade; memory card (SD 2.0 compatible)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Special Features: FM Radio, G-Sensor&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'HTC Touch HD', '', '', '');
+(28, 2, 'HTC Touch HD', '&lt;p&gt;\r\n	HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&amp;quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Processor Qualcomm&amp;reg; MSM 7201A&amp;trade; 528 MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Operating System&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Memory: 512 MB ROM, 288 MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Device Control via HTC TouchFLO&amp;trade; 3D &amp;amp; Touch-sensitive front panel buttons&lt;/li&gt;\r\n	&lt;li&gt;\r\n		GPS and A-GPS ready&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth&amp;reg; 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wi-Fi&amp;reg;: IEEE 802.11 b/g&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HTC ExtUSB&amp;trade; (11-pin mini-USB 2.0)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		5 megapixel color camera with auto focus&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VGA CMOS color camera&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;/li&gt;\r\n	&lt;li&gt;\r\n		40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Expansion Slot: microSD&amp;trade; memory card (SD 2.0 compatible)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Special Features: FM Radio, G-Sensor&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'HTC Touch HD', '', '', ''),
+(42, 3, 'Apple Cinema 30&quot;', '&lt;p&gt;&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there''s no limit to what you can achieve.&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it''s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data.&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple''s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications.&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment.&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br&gt;&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;&lt;h3 style=&quot;font-family: ''Open Sans'', sans-serif; color: rgb(102, 102, 102);&quot;&gt;Features:&lt;/h3&gt;&lt;p&gt;Unrivaled display performance&lt;/p&gt;&lt;ul&gt;&lt;li&gt;30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;&lt;li&gt;Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;&lt;li&gt;Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;&lt;li&gt;Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;&lt;li&gt;Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;&lt;li&gt;Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;&lt;li&gt;Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Simple setup and operation&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;&lt;li&gt;Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;&lt;li&gt;Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Sleek, elegant design&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Huge virtual workspace, very small footprint.&lt;/li&gt;&lt;li&gt;Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;&lt;li&gt;Unique hinge design for effortless adjustment&lt;/li&gt;&lt;li&gt;Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;&lt;/ul&gt;&lt;h3 style=&quot;font-family: ''Open Sans'', sans-serif; color: rgb(102, 102, 102);&quot;&gt;Technical specifications&lt;/h3&gt;&lt;p&gt;&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;2560 x 1600 pixels (optimum resolution)&lt;/li&gt;&lt;li&gt;2048 x 1280&lt;/li&gt;&lt;li&gt;1920 x 1200&lt;/li&gt;&lt;li&gt;1280 x 800&lt;/li&gt;&lt;li&gt;1024 x 640&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;16.7 million&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;170° horizontal; 170° vertical&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;700:1&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;16 ms&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Antiglare hardcoat&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Display Power,&lt;/li&gt;&lt;li&gt;System sleep, wake&lt;/li&gt;&lt;li&gt;Brightness&lt;/li&gt;&lt;li&gt;Monitor tilt&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br&gt;Cable&lt;/p&gt;&lt;ul&gt;&lt;li&gt;DVI (Digital Visual Interface)&lt;/li&gt;&lt;li&gt;FireWire 400&lt;/li&gt;&lt;li&gt;USB 2.0&lt;/li&gt;&lt;li&gt;DC power (24 V)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Connectors&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Two-port, self-powered USB 2.0 hub&lt;/li&gt;&lt;li&gt;Two FireWire 400 ports&lt;/li&gt;&lt;li&gt;Kensington security port&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br&gt;Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;&lt;li&gt;Maximum power when operating: 150W&lt;/li&gt;&lt;li&gt;Energy saver mode: 3W or less&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Operating temperature: 50° to 95° F (10° to 35° C)&lt;/li&gt;&lt;li&gt;Storage temperature: -40° to 116° F (-40° to 47° C)&lt;/li&gt;&lt;li&gt;Operating humidity: 20% to 80% noncondensing&lt;/li&gt;&lt;li&gt;Maximum operating altitude: 10,000 feet&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;FCC Part 15 Class B&lt;/li&gt;&lt;li&gt;EN55022 Class B&lt;/li&gt;&lt;li&gt;EN55024&lt;/li&gt;&lt;li&gt;VCCI Class B&lt;/li&gt;&lt;li&gt;AS/NZS 3548 Class B&lt;/li&gt;&lt;li&gt;CNS 13438 Class B&lt;/li&gt;&lt;li&gt;ICES-003 Class B&lt;/li&gt;&lt;li&gt;ISO 13406 part 2&lt;/li&gt;&lt;li&gt;MPR II&lt;/li&gt;&lt;li&gt;IEC 60950&lt;/li&gt;&lt;li&gt;UL 60950&lt;/li&gt;&lt;li&gt;CSA 60950&lt;/li&gt;&lt;li&gt;EN60950&lt;/li&gt;&lt;li&gt;ENERGY STAR&lt;/li&gt;&lt;li&gt;TCO ''03&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Size and weight&lt;/b&gt;&lt;br&gt;30-inch Apple Cinema HD Display&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Height: 21.3 inches (54.3 cm)&lt;/li&gt;&lt;li&gt;Width: 27.2 inches (68.8 cm)&lt;/li&gt;&lt;li&gt;Depth: 8.46 inches (21.5 cm)&lt;/li&gt;&lt;li&gt;Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Mac Pro, all graphic options&lt;/li&gt;&lt;li&gt;MacBook Pro&lt;/li&gt;&lt;li&gt;Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;&lt;li&gt;Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;&lt;li&gt;PowerBook G4 with dual-link DVI support&lt;/li&gt;&lt;li&gt;Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;&lt;/ul&gt;', '', 'Apple Cinema 30&quot;', '', '', ''),
+(30, 3, 'Canon EOS 5D', '&lt;p&gt;Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;br&gt;&lt;/p&gt;', '', 'Canon EOS 5D', '', '', ''),
+(49, 3, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world&amp;rsquo;s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 &amp;ndash; includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick &amp;ndash; a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader&amp;rsquo;s Hub, Music Hub and Samsung Mini Apps Tray &amp;ndash; which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;&amp;auml;&amp;ouml;&lt;/p&gt;\r\n', '', 'Samsung Galaxy Tab 10.1', '', '', ''),
+(31, 3, 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'Nikon D300', '', '', ''),
+(44, 3, 'MacBook Air', '&lt;div&gt;\r\n	MacBook Air is ultrathin, ultraportable, and ultra unlike anything else. But you don&amp;rsquo;t lose inches and pounds overnight. It&amp;rsquo;s the result of rethinking conventions. Of multiple wireless innovations. And of breakthrough design. With MacBook Air, mobile computing suddenly has a new standard.&lt;/div&gt;\r\n', '', 'MacBook Air', '', '', ''),
+(45, 3, 'MacBook Pro', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Latest Intel mobile architecture&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Powered by the most advanced mobile processors from Intel, the new Core 2 Duo MacBook Pro is over 50% faster than the original Core Duo MacBook Pro and now supports up to 4GB of RAM.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Leading-edge graphics&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			The NVIDIA GeForce 8600M GT delivers exceptional graphics processing power. For the ultimate creative canvas, you can even configure the 17-inch model with a 1920-by-1200 resolution display.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Designed for life on the road&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Innovations such as a magnetic power connection and an illuminated keyboard with ambient light sensor put the MacBook Pro in a class by itself.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Connect. Create. Communicate.&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Quickly set up a video conference with the built-in iSight camera. Control presentations and media from up to 30 feet away with the included Apple Remote. Connect to high-bandwidth peripherals with FireWire 800 and DVI.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Next-generation wireless&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Featuring 802.11n wireless technology, the MacBook Pro delivers up to five times the performance and up to twice the range of previous-generation technologies.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'MacBook Pro', '', '', ''),
+(29, 3, 'Palm Treo Pro', '&lt;p&gt;\r\n	Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to business and personal email, stay on top of appointments and contacts, and use Wi-Fi or GPS when you&amp;rsquo;re out and about. Then watch a video on YouTube, catch up with news and sports on the web, or listen to a few songs. Balance your work and play the way you like it, with the Palm Treo Pro.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Edition&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Qualcomm&amp;reg; MSM7201 400MHz Processor&lt;/li&gt;\r\n	&lt;li&gt;\r\n		320x320 transflective colour TFT touchscreen&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/UMTS/EDGE/GPRS/GSM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Tri-band UMTS &amp;mdash; 850MHz, 1900MHz, 2100MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM &amp;mdash; 850/900/1800/1900&lt;/li&gt;\r\n	&lt;li&gt;\r\n		802.11b/g with WPA, WPA2, and 801.1x authentication&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in GPS&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth Version: 2.0 + Enhanced Data Rate&lt;/li&gt;\r\n	&lt;li&gt;\r\n		256MB storage (100MB user available), 128MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2.0 megapixel camera, up to 8x digital zoom and video capture&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Removable, rechargeable 1500mAh lithium-ion battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Up to 5.0 hours talk time and up to 250 hours standby&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroSDHC card expansion (up to 32GB supported)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroUSB 2.0 for synchronization and charging&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.5mm stereo headset jack&lt;/li&gt;\r\n	&lt;li&gt;\r\n		60mm (W) x 114mm (L) x 13.5mm (D) / 133g&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'Palm Treo Pro', '', '', ''),
+(36, 3, 'iPod Nano', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Video in your pocket.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Its the small iPod with one very big idea: video. The worlds most popular music player now lets you enjoy movies, TV shows, and more on a two-inch display thats 65% brighter than before.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Sleek and colorful.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With an anodized aluminum and polished stainless steel enclosure and a choice of five colors, iPod nano is dressed to impress.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;iTunes.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Available as a free download, iTunes makes it easy to browse and buy millions of songs, movies, TV shows, audiobooks, and games and download free podcasts all at the iTunes Store. And you can import your own music, manage your whole media library, and sync your iPod or iPhone with ease.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'iPod Nano', '', '', ''),
+(46, 3, 'Sony VAIO', '&lt;div&gt;\r\n	Unprecedented power. The next generation of processing technology has arrived. Built into the newest VAIO notebooks lies Intel&amp;#39;s latest, most powerful innovation yet: Intel&amp;reg; Centrino&amp;reg; 2 processor technology. Boasting incredible speed, expanded wireless connectivity, enhanced multimedia support and greater energy efficiency, all the high-performance essentials are seamlessly combined into a single chip.&lt;/div&gt;\r\n', '', 'Sony VAIO', '', '', ''),
+(47, 3, 'HP LP3065', '&lt;p&gt;\r\n	Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class performance and presentation features on a huge wide-aspect screen while letting you work as comfortably as possible - you might even forget you&amp;#39;re at the office&lt;/p&gt;\r\n', '', 'HP LP3065', '', '', ''),
+(32, 3, 'iPod Touch', '&lt;p&gt;\r\n	&lt;strong&gt;Revolutionary multi-touch interface.&lt;/strong&gt;&lt;br /&gt;\r\n	iPod touch features the same multi-touch screen technology as iPhone. Pinch to zoom in on a photo. Scroll through your songs and videos with a flick. Flip through your library by album artwork with Cover Flow.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Gorgeous 3.5-inch widescreen display.&lt;/strong&gt;&lt;br /&gt;\r\n	Watch your movies, TV shows, and photos come alive with bright, vivid color on the 320-by-480-pixel display.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Music downloads straight from iTunes.&lt;/strong&gt;&lt;br /&gt;\r\n	Shop the iTunes Wi-Fi Music Store from anywhere with Wi-Fi.1 Browse or search to find the music youre looking for, preview it, and buy it with just a tap.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Surf the web with Wi-Fi.&lt;/strong&gt;&lt;br /&gt;\r\n	Browse the web using Safari and watch YouTube videos on the first iPod with Wi-Fi built in&lt;br /&gt;\r\n	&amp;nbsp;&lt;/p&gt;\r\n', '', 'iPod Touch', '', '', ''),
+(41, 3, 'iMac', '&lt;div&gt;\r\n	Just when you thought iMac had everything, now there&acute;s even more. More powerful Intel Core 2 Duo processors. And more memory standard. Combine this with Mac OS X Leopard and iLife &acute;08, and it&acute;s more all-in-one than ever. iMac packs amazing performance into a stunningly slim space.&lt;/div&gt;\r\n', '', 'iMac', '', '', ''),
+(33, 3, 'Samsung SyncMaster 941BW', '&lt;div&gt;\r\n	Imagine the advantages of going big without slowing down. The big 19&amp;quot; 941BW monitor combines wide aspect ratio with fast pixel response time, for bigger images, more room to work and crisp motion. In addition, the exclusive MagicBright 2, MagicColor and MagicTune technologies help deliver the ideal image in every situation, while sleek, narrow bezels and adjustable stands deliver style just the way you want it. With the Samsung 941BW widescreen analog/digital LCD monitor, it&amp;#39;s not hard to imagine.&lt;/div&gt;\r\n', '', 'Samsung SyncMaster 941BW', '', '', ''),
+(34, 3, 'iPod Shuffle', '&lt;div&gt;\r\n	&lt;strong&gt;Born to be worn.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Clip on the worlds most wearable music player and take up to 240 songs with you anywhere. Choose from five colors including four new hues to make your musical fashion statement.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Random meets rhythm.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With iTunes autofill, iPod shuffle can deliver a new musical experience every time you sync. For more randomness, you can shuffle songs during playback with the slide of a switch.&lt;/p&gt;\r\n	&lt;strong&gt;Everything is easy.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Charge and sync with the included USB dock. Operate the iPod shuffle controls with one hand. Enjoy up to 12 hours straight of skip-free music playback.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'iPod Shuffle', '', '', ''),
+(43, 3, 'MacBook', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Intel Core 2 Duo processor&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;1GB memory, larger hard drives&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Sleek, 1.08-inch-thin design&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Built-in iSight camera&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', 'MacBook', '', '', ''),
+(35, 3, 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', 'Product 8', '', '', ''),
+(48, 3, 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'iPod Classic', '', '', ''),
+(40, 3, 'iPhone', '&lt;p class=&quot;intro&quot;&gt;\r\n	iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', 'iPhone', '', '', ''),
+(28, 3, 'HTC Touch HD', '&lt;p&gt;\r\n	HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&amp;quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Processor Qualcomm&amp;reg; MSM 7201A&amp;trade; 528 MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Operating System&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Memory: 512 MB ROM, 288 MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Device Control via HTC TouchFLO&amp;trade; 3D &amp;amp; Touch-sensitive front panel buttons&lt;/li&gt;\r\n	&lt;li&gt;\r\n		GPS and A-GPS ready&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth&amp;reg; 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wi-Fi&amp;reg;: IEEE 802.11 b/g&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HTC ExtUSB&amp;trade; (11-pin mini-USB 2.0)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		5 megapixel color camera with auto focus&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VGA CMOS color camera&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;/li&gt;\r\n	&lt;li&gt;\r\n		40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Expansion Slot: microSD&amp;trade; memory card (SD 2.0 compatible)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Special Features: FM Radio, G-Sensor&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'HTC Touch HD', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -3326,101 +3469,44 @@ CREATE TABLE `oc_setting` (
 --
 
 INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALUES
-(0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(0, 'config', 'config_shared', '0', 0),
-(0, 'config', 'config_secure', '0', 0),
-(0, 'voucher', 'voucher_sort_order', '8', 0),
-(0, 'voucher', 'voucher_status', '1', 0),
-(0, 'config', 'config_fraud_detection', '0', 0),
-(0, 'config', 'config_alert_email', '', 0),
-(0, 'config', 'config_ftp_status', '0', 0),
-(0, 'config', 'config_ftp_root', '', 0),
-(0, 'config', 'config_ftp_password', '', 0),
-(0, 'config', 'config_ftp_username', '', 0),
-(0, 'config', 'config_ftp_port', '21', 0),
-(0, 'config', 'config_ftp_hostname', '', 0),
-(0, 'config', 'config_meta_title', 'Ваш Магазин', 0),
-(0, 'config', 'config_meta_description', 'Мой магазин', 0),
-(0, 'config', 'config_meta_keyword', '', 0),
-(0, 'config', 'config_theme', 'theme_default', 0),
-(0, 'config', 'config_layout_id', '4', 0),
-(0, 'config', 'config_country_id', '176', 0),
-(0, 'config', 'config_zone_id', '2785', 0),
-(0, 'config', 'config_language', 'ru-ru', 0),
-(0, 'config', 'config_admin_language', 'ru-ru', 0),
-(0, 'config', 'config_currency', 'RUB', 0),
-(0, 'config', 'config_currency_auto', '1', 0),
-(0, 'config', 'config_length_class_id', '1', 0),
-(0, 'config', 'config_weight_class_id', '1', 0),
-(0, 'config', 'config_product_count', '0', 0),
-(0, 'config', 'config_limit_admin', '20', 0),
-(0, 'config', 'config_review_status', '1', 0),
-(0, 'config', 'config_review_guest', '1', 0),
-(0, 'config', 'config_voucher_min', '1', 0),
-(0, 'config', 'config_voucher_max', '1000', 0),
-(0, 'config', 'config_tax', '1', 0),
-(0, 'config', 'config_tax_default', 'shipping', 0),
-(0, 'config', 'config_tax_customer', 'shipping', 0),
-(0, 'config', 'config_customer_online', '0', 0),
-(0, 'config', 'config_customer_activity', '0', 0),
-(0, 'config', 'config_customer_search', '0', 0),
-(0, 'config', 'config_customer_group_id', '1', 0),
-(0, 'config', 'config_customer_group_display', '["1"]', 1),
-(0, 'config', 'config_customer_price', '0', 0),
-(0, 'config', 'config_account_id', '3', 0),
-(0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
-(0, 'config', 'config_api_id', '1', 0),
-(0, 'config', 'config_cart_weight', '1', 0),
-(0, 'config', 'config_checkout_guest', '1', 0),
-(0, 'config', 'config_checkout_id', '5', 0),
-(0, 'config', 'config_order_status_id', '1', 0),
-(0, 'config', 'config_processing_status', '["5","1","2","12","3"]', 1),
-(0, 'config', 'config_complete_status', '["5","3"]', 1),
-(0, 'config', 'config_stock_display', '0', 0),
-(0, 'config', 'config_stock_warning', '0', 0),
-(0, 'config', 'config_stock_checkout', '0', 0),
-(0, 'config', 'config_affiliate_approval', '0', 0),
-(0, 'config', 'config_affiliate_auto', '0', 0),
-(0, 'config', 'config_affiliate_commission', '5', 0),
-(0, 'config', 'config_affiliate_id', '4', 0),
-(0, 'config', 'config_return_id', '0', 0),
-(0, 'config', 'config_return_status_id', '2', 0),
-(0, 'config', 'config_logo', 'catalog/logo.png', 0),
-(0, 'config', 'config_icon', 'catalog/cart.png', 0),
-(0, 'config', 'config_comment', '', 0),
-(0, 'config', 'config_open', '', 0),
-(0, 'config', 'config_image', '', 0),
-(0, 'config', 'config_fax', '', 0),
-(0, 'config', 'config_telephone', '123456789', 0),
-(0, 'config', 'config_email', 'admin@store.ru', 0),
-(0, 'config', 'config_geocode', '54.718681,20.499113', 0),
-(0, 'config', 'config_owner', 'Мое Имя', 0),
-(0, 'config', 'config_address', 'Адрес', 0),
-(0, 'config', 'config_name', 'Мой Магазин', 0),
-(0, 'config', 'config_seo_url', '0', 0),
-(0, 'config', 'config_file_max_size', '300000', 0),
-(0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(0, 'config', 'config_seo_pro_utm', 'block\r\nfrommarket\r\ngclid\r\nkeyword\r\nlist_type\r\nopenstat\r\nopenstat_service\r\nopenstat_campaign\r\nopenstat_ad\r\nopenstat_source\r\nposition\r\nsource\r\ntracking\r\ntype\r\nyclid\r\nymclid\r\nuri\r\nurltype\r\nutm_source\r\nutm_medium\r\nutm_campaign\r\nutm_term\r\nutm_content', 0),
+(0, 'config', 'config_address', '', 0),
+(0, 'config', 'config_owner', 'Имя и Фамилия', 0),
 (0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
-(0, 'config', 'config_maintenance', '0', 0),
-(0, 'config', 'config_password', '1', 0),
-(0, 'config', 'config_encryption', '87431d38e7edce36d5153707d4cd2bf9', 0),
-(0, 'config', 'config_compression', '0', 0),
 (0, 'config', 'config_error_display', '1', 0),
 (0, 'config', 'config_error_log', '1', 0),
 (0, 'config', 'config_error_filename', 'error.log', 0),
-(0, 'config', 'config_google_analytics', '', 0),
-(0, 'config', 'config_mail_protocol', 'mail', 0),
-(0, 'config', 'config_mail_parameter', '', 0),
-(0, 'config', 'config_mail_smtp_hostname', '', 0),
-(0, 'config', 'config_mail_smtp_username', '', 0),
-(0, 'config', 'config_mail_smtp_password', '', 0),
-(0, 'config', 'config_mail_smtp_port', '25', 0),
-(0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(0, 'config', 'config_sms_alert', '0', 0),
+(0, 'config', 'config_sms_gatename', 'testsms', 0),
+(0, 'config', 'config_sms_from', '', 0),
+(0, 'config', 'config_sms_to', '', 0),
+(0, 'config', 'config_sms_copy', '', 0),
+(0, 'config', 'config_sms_message', '', 0),
+(0, 'config', 'config_sms_gate_username', '', 0),
+(0, 'config', 'config_sms_gate_password', '', 0),
+(0, 'config', 'config_meta_title', 'Название магазина — обозначим главную тематику здесь', 0),
+(0, 'config', 'config_meta_description', 'Покупайте товары  главной тематики в нашем магазине &quot;НАЗВАНИЕ МАГАЗИНА&quot;. Можно обозначить город или преимущества вроде купите в рассрочку, бесплатная доставка, гарантия от производителя', 0),
+(0, 'config', 'config_encryption', '2pobsV60PfHrlrJALDl7HQtE6JOZFSi2FpAhb5c9zyJtBtc7lDbrWmLYZgo232UPRMg1XZdL10sDh2RANAlvd1qsWzAQKtx9SUlO0M49rVp02g4dvP08Ul77QncT2pwWb9XXOax9QqrgFfoSbEZEfZbYdJlU37Hks8ZCD8ur85jlsu9WXANhx8sFkwGHfPnDMXl4CZBgNUOKunOF3UDOHbfvOFyVyITqlA9vLzPx7NXNVUqEfncOOEjhYZPHOIfwZwV0B67mvmaGcxfr7Qas2rdbhuvcE03wvgLD56crtIXbTTqnZzPfiyQ7ubHXHb63LLY4rLn510Plvm4hCW9yvEv8ltUJVgwAJXQ65CDmoCqjXuHTZEzb24mTsuKftkdLP8a3Uvg3C8qZetTzNxk5BgiBd9Me3gVeabaRVxgmrKSS8y1GSE6EL4p0xcDfd5JheoF0w8RmxdYoH3UyXxRp5nT49MSaKepZYXXSqXdavb5UAe0fzrufUh94f4ThxicAZCHjGyzjssZSkTXM5i9x06tpyDYirOrRoI7tXKRw5hEIZGh1cRsUehaHjWZWAOidtXOlPTzlA0EmebVsICojh6FCnfJZfHKJu8omFlRPEwvnOTeZWIDwE5fGrnBaRmpBZtoj6RHiCvRbs7qLQfkYWbUzsxEVK5PMtwCCYUhVq6C3Oly9mWSu1ikkezTa5vpfqvtqOoBMBW1ITjeMoPUm4ZIvW5bv02kZ11yjnMI83ju7Wdwnjhi0iHytdYXvgnv0s689WPCjgh4WHXRJCMZLhSvFCvGvD2ujq8gTxK4Zlk3HobyFyyojKergoaL1xT50URAJkrFsDfSNJRA4L9Q0trjDGu0z59l074C6sPuVSJZneBbbZq8GX7C8RYFvDuDqmFmKnfU1uHUO7LUzRaG4nnBRJuQ6h4uPnyPP5f4vKNdOlCraeRJuKnRdE3PFIABBw4UyXbxuXm4SOht0EGV26kGOhjOb7KVkWhoMyDKPtXOJCLN8nUJ3BRCfihLxgOna', 0),
+(0, 'voucher', 'voucher_sort_order', '8', 0),
+(0, 'voucher', 'voucher_status', '1', 0),
+(0, 'config', 'config_name', 'Название магазина', 0),
+(0, 'config', 'config_meta_keyword', '', 0),
+(0, 'config', 'config_seo_pro_utm', 'block\r\nfrommarket\r\ngclid\r\nkeyword\r\nlist_type\r\nopenstat\r\nopenstat_service\r\nopenstat_campaign\r\nopenstat_ad\r\nopenstat_source\r\nposition\r\nsource\r\ntracking\r\ntype\r\nyclid\r\nymclid\r\nuri\r\nurltype\r\nutm_source\r\nutm_medium\r\nutm_campaign\r\nutm_term\r\nutm_content', 0),
+(0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(0, 'config', 'config_file_max_size', '300000', 0),
+(0, 'config', 'config_shared', '0', 0),
+(0, 'config', 'config_compression', '0', 0),
+(0, 'config', 'config_mail_regexp', '/^[^@]+@.*.[a-z]{2,15}$/i', 0),
+(0, 'config', 'config_editor_default', '1', 0),
+(0, 'config', 'config_secure', '0', 0),
+(0, 'config', 'config_password', '1', 0),
+(0, 'config', 'config_seo_url_postfix', '.html', 0),
+(0, 'config', 'config_seo_url_include_path', '1', 0),
+(0, 'config', 'config_seo_url_type', 'seo_pro', 0),
+(0, 'config', 'config_seo_url', '1', 0),
+(0, 'config', 'config_maintenance', '0', 0),
+(0, 'config', 'config_alert_email', '', 0),
 (0, 'config', 'config_mail_alert', '["order"]', 1),
-(0, 'config', 'config_captcha', 'basic_captcha', 0),
-(0, 'config', 'config_captcha_page', '["review","return","contact"]', 1),
-(0, 'config', 'config_login_attempts', '5', 0),
 (0, 'free_checkout', 'free_checkout_status', '1', 0),
 (0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
 (0, 'shipping', 'shipping_sort_order', '3', 0),
@@ -3500,9 +3586,79 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'dashboard_recent', 'dashboard_recent_sort_order', '8', 0),
 (0, 'dashboard_activity', 'dashboard_activity_width', '4', 0),
 (0, 'dashboard_recent', 'dashboard_recent_width', '8', 0),
-(0, 'config', 'config_seo_url_type', 'seo_url', 0),
-(0, 'config', 'config_mail_regexp', '/^[^\@]+@.*.[a-z]{2,15}$/i', 0),
-(0, 'config', 'config_langdata', '{"1":{"meta_title":"Мой Магазин","meta_description":"Мой Магазин","meta_keyword":"","name":"Мой Магазин","owner":"Мое Имя","address":"Адрес","open":"с 10ч до 18ч\\r\\nобед с 14ч до 15ч\\r\\nвоскресенье - выходной","comment":""},"2":{"meta_title":"Your Store","meta_description":"My Store","meta_keyword":"","name":"Your Store","owner":"Your Name","address":"Address 1","open":"","comment":""}}', 1);
+(0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(0, 'config', 'config_mail_smtp_port', '25', 0),
+(0, 'config', 'config_mail_smtp_password', '', 0),
+(0, 'config', 'config_mail_smtp_username', '', 0),
+(0, 'config', 'config_mail_smtp_hostname', '', 0),
+(0, 'config', 'config_mail_parameter', '', 0),
+(0, 'config', 'config_mail_protocol', 'mail', 0),
+(0, 'config', 'config_ftp_status', '0', 0),
+(0, 'config', 'config_ftp_root', '', 0),
+(0, 'config', 'config_ftp_password', '', 0),
+(0, 'config', 'config_ftp_username', '', 0),
+(0, 'config', 'config_ftp_port', '21', 0),
+(0, 'config', 'config_ftp_hostname', 'opencart-ready.loc', 0),
+(0, 'config', 'config_captcha_page', '["review","return","contact"]', 1),
+(0, 'config', 'config_logo', 'catalog/logo.png', 0),
+(0, 'config', 'config_icon', 'catalog/cart.png', 0),
+(0, 'config', 'config_captcha', '', 0),
+(0, 'config', 'config_return_status_id', '2', 0),
+(0, 'config', 'config_return_id', '0', 0),
+(0, 'config', 'config_affiliate_id', '4', 0),
+(0, 'config', 'config_affiliate_commission', '5', 0),
+(0, 'config', 'config_affiliate_auto', '0', 0),
+(0, 'config', 'config_affiliate_approval', '0', 0),
+(0, 'config', 'config_stock_checkout', '0', 0),
+(0, 'config', 'config_stock_warning', '0', 0),
+(0, 'config', 'config_stock_display', '0', 0),
+(0, 'config', 'config_api_id', '1', 0),
+(0, 'config', 'config_fraud_status_id', '13', 0),
+(0, 'config', 'config_complete_status', '["3","5"]', 1),
+(0, 'config', 'config_order_status_id', '1', 0),
+(0, 'config', 'config_processing_status', '["1","2","12","3","5"]', 1),
+(0, 'config', 'config_checkout_id', '5', 0),
+(0, 'config', 'config_checkout_guest', '1', 0),
+(0, 'config', 'config_cart_weight', '1', 0),
+(0, 'config', 'config_invoice_prefix', 'INV-2020-00', 0),
+(0, 'config', 'config_account_id', '3', 0),
+(0, 'config', 'config_login_attempts', '5', 0),
+(0, 'config', 'config_customer_price', '0', 0),
+(0, 'config', 'config_customer_group_display', '["1"]', 1),
+(0, 'config', 'config_customer_group_id', '1', 0),
+(0, 'config', 'config_customer_search', '0', 0),
+(0, 'config', 'config_customer_activity', '0', 0),
+(0, 'config', 'config_customer_online', '0', 0),
+(0, 'config', 'config_tax_customer', 'shipping', 0),
+(0, 'config', 'config_tax', '1', 0),
+(0, 'config', 'config_tax_default', 'shipping', 0),
+(0, 'config', 'config_voucher_max', '1000', 0),
+(0, 'config', 'config_voucher_min', '1', 0),
+(0, 'config', 'config_review_guest', '1', 0),
+(0, 'config', 'config_review_status', '1', 0),
+(0, 'config', 'config_product_mpn_hide', '0', 0),
+(0, 'config', 'config_product_isbn_hide', '0', 0),
+(0, 'config', 'config_product_jan_hide', '0', 0),
+(0, 'config', 'config_product_ean_hide', '0', 0),
+(0, 'config', 'config_product_upc_hide', '0', 0),
+(0, 'config', 'config_limit_admin', '20', 0),
+(0, 'config', 'config_product_count', '0', 0),
+(0, 'config', 'config_weight_class_id', '1', 0),
+(0, 'config', 'config_length_class_id', '1', 0),
+(0, 'config', 'config_currency_auto', '1', 0),
+(0, 'config', 'config_currency', 'RUB', 0),
+(0, 'config', 'config_admin_language', 'ru-ru', 0),
+(0, 'config', 'config_theme', 'theme_default', 0),
+(0, 'config', 'config_layout_id', '4', 0),
+(0, 'config', 'config_geocode', '54.718681,20.499113', 0),
+(0, 'config', 'config_email', 'sergheitkach@gmail.com', 0),
+(0, 'config', 'config_telephone', '123456789', 0),
+(0, 'config', 'config_fax', '', 0),
+(0, 'config', 'config_image', '', 0),
+(0, 'config', 'config_country_id', '176', 0),
+(0, 'config', 'config_zone_id', '2785', 0),
+(0, 'config', 'config_language', 'ru-ru', 0),
+(0, 'config', 'config_langdata', '{"1":{"meta_title":"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043c\\u0430\\u0433\\u0430\\u0437\\u0438\\u043d\\u0430 \\u2014 \\u043e\\u0431\\u043e\\u0437\\u043d\\u0430\\u0447\\u0438\\u043c \\u0433\\u043b\\u0430\\u0432\\u043d\\u0443\\u044e \\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u043a\\u0443 \\u0437\\u0434\\u0435\\u0441\\u044c","meta_description":"\\u041f\\u043e\\u043a\\u0443\\u043f\\u0430\\u0439\\u0442\\u0435 \\u0442\\u043e\\u0432\\u0430\\u0440\\u044b  \\u0433\\u043b\\u0430\\u0432\\u043d\\u043e\\u0439 \\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u043a\\u0438 \\u0432 \\u043d\\u0430\\u0448\\u0435\\u043c \\u043c\\u0430\\u0433\\u0430\\u0437\\u0438\\u043d\\u0435 &quot;\\u041d\\u0410\\u0417\\u0412\\u0410\\u041d\\u0418\\u0415 \\u041c\\u0410\\u0413\\u0410\\u0417\\u0418\\u041d\\u0410&quot;. \\u041c\\u043e\\u0436\\u043d\\u043e \\u043e\\u0431\\u043e\\u0437\\u043d\\u0430\\u0447\\u0438\\u0442\\u044c \\u0433\\u043e\\u0440\\u043e\\u0434 \\u0438\\u043b\\u0438 \\u043f\\u0440\\u0435\\u0438\\u043c\\u0443\\u0449\\u0435\\u0441\\u0442\\u0432\\u0430 \\u0432\\u0440\\u043e\\u0434\\u0435 \\u043a\\u0443\\u043f\\u0438\\u0442\\u0435 \\u0432 \\u0440\\u0430\\u0441\\u0441\\u0440\\u043e\\u0447\\u043a\\u0443, \\u0431\\u0435\\u0441\\u043f\\u043b\\u0430\\u0442\\u043d\\u0430\\u044f \\u0434\\u043e\\u0441\\u0442\\u0430\\u0432\\u043a\\u0430, \\u0433\\u0430\\u0440\\u0430\\u043d\\u0442\\u0438\\u044f \\u043e\\u0442 \\u043f\\u0440\\u043e\\u0438\\u0437\\u0432\\u043e\\u0434\\u0438\\u0442\\u0435\\u043b\\u044f","meta_keyword":"","name":"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043c\\u0430\\u0433\\u0430\\u0437\\u0438\\u043d\\u0430","owner":"\\u0418\\u043c\\u044f \\u0438 \\u0424\\u0430\\u043c\\u0438\\u043b\\u0438\\u044f","address":"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0443\\u043b\\u0438\\u0446\\u044b, \\u043d\\u043e\\u043c\\u0435\\u0440 \\u0434\\u043e\\u043c\\u0430, \\u043d\\u043e\\u043c\\u0435\\u0440 \\u043e\\u0444\\u0438\\u0441\\u0430\\r\\n\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043d\\u0430\\u0441\\u0435\\u043b\\u0435\\u043d\\u043d\\u043e\\u0433\\u043e \\u043f\\u0443\\u043d\\u043a\\u0442\\u0430\\r\\n\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0440\\u0430\\u0439\\u043e\\u043d\\u0430, \\u043e\\u0431\\u043b\\u0430\\u0441\\u0442\\u0438, \\u043a\\u0440\\u0430\\u044f \\u0438\\u043b\\u0438 \\u0440\\u0435\\u0441\\u043f\\u0443\\u0431\\u043b\\u0438\\u043a\\u0438\\r\\n\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0441\\u0442\\u0440\\u0430\\u043d\\u044b (\\u0435\\u0441\\u043b\\u0438 \\u043c\\u0430\\u0433\\u0430\\u0437\\u0438\\u043d \\u0440\\u0430\\u0431\\u043e\\u0442\\u0430\\u0435\\u0442 \\u043d\\u0430 \\u0430\\u0443\\u0434\\u0438\\u0442\\u043e\\u0440\\u0438\\u044e \\u0432 \\u0441\\u0442\\u0440\\u0430\\u043d\\u0435 \\u0438 \\u0437\\u0430 \\u0440\\u0443\\u0431\\u0435\\u0436\\u043e\\u043c)\\r\\n\\u041d\\u043e\\u043c\\u0435\\u0440 \\u0430\\/\\u044f, \\u0435\\u0441\\u043b\\u0438 \\u0435\\u0441\\u0442\\u044c (\\u0432 \\u0444\\u043e\\u0440\\u043c\\u0430\\u0442\\u0435 \\u00ab\\u0430\\/\\u044f 15\\u00bb)","open":"\\u041f\\u0440\\u0438\\u0435\\u043c \\u0437\\u0430\\u043a\\u0430\\u0437\\u043e\\u0432 \\u0447\\u0435\\u0440\\u0435\\u0437 \\u0441\\u0430\\u0439\\u0442:\\r\\n\\u2013 24\\/7\\r\\n\\u2013 \\u043e\\u0431\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0437\\u0430\\u043a\\u0430\\u0437\\u043e\\u0432 \\u043c\\u0435\\u043d\\u0435\\u0434\\u0436\\u0435\\u0440\\u043e\\u043c: \\u0432 \\u0440\\u0430\\u0431\\u043e\\u0447\\u0435\\u0435 \\u0432\\u0440\\u0435\\u043c\\u044f\\r\\n\\r\\n\\u041f\\u0440\\u0438\\u0435\\u043c \\u0437\\u0432\\u043e\\u043d\\u043a\\u043e\\u0432:\\r\\n\\u2013 \\u041f\\u043d\\u2013\\u041f\\u0442: 09:00\\u201318:00\\r\\n\\u2013 \\u0421\\u0431\\u2013\\u0412\\u0441: 09:00\\u201316:00\\r\\n\\r\\n\\u0412\\u044b\\u0434\\u0430\\u0447\\u0430 \\u0437\\u0430\\u043a\\u0430\\u0437\\u043e\\u0432:\\r\\n\\u2013 \\u041f\\u043d\\u2013\\u041f\\u0442: 09:00\\u201318:00\\r\\n\\u2013 \\u0421\\u0431\\u2013\\u0412\\u0441: \\u0432\\u044b\\u0445\\u043e\\u0434\\u043d\\u043e\\u0439","comment":""},"3":{"meta_title":"\\u041d\\u0430\\u0437\\u0432\\u0430 \\u043c\\u0430\\u0433\\u0430\\u0437\\u0438\\u043d\\u0443 \\u2014 \\u043f\\u043e\\u0437\\u043d\\u0430\\u0447\\u0438\\u043c\\u043e \\u0433\\u043e\\u043b\\u043e\\u0432\\u043d\\u0443 \\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u043a\\u0443 \\u0442\\u0443\\u0442","meta_description":"\\u041a\\u0443\\u043f\\u0443\\u0439\\u0442\\u0435 \\u0442\\u043e\\u0432\\u0430\\u0440\\u0438 \\u0433\\u043e\\u043b\\u043e\\u0432\\u043d\\u043e\\u044e \\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u043a\\u0438 \\u0432 \\u043d\\u0430\\u0448\\u043e\\u043c\\u0443 \\u043c\\u0430\\u0433\\u0430\\u0437\\u0438\\u043d\\u0456 &quot;\\u041d\\u0410\\u0417\\u0412\\u0410 \\u041c\\u0410\\u0413\\u0410\\u0417\\u0418\\u041d\\u0423&quot;. \\u041c\\u043e\\u0436\\u043d\\u0430 \\u043f\\u043e\\u0437\\u043d\\u0430\\u0447\\u0438\\u0442\\u0438 \\u043c\\u0456\\u0441\\u0442\\u043e \\u0430\\u0431\\u043e \\u043f\\u0435\\u0440\\u0435\\u0432\\u0430\\u0433\\u0438 \\u043d\\u0430 \\u043a\\u0448\\u0442\\u0430\\u043b\\u0442 \\u043a\\u0443\\u043f\\u0438\\u0442\\u0435 \\u0432 \\u0440\\u043e\\u0437\\u0441\\u0442\\u0440\\u043e\\u0447\\u043a\\u0443, \\u0431\\u0435\\u0437\\u043a\\u043e\\u0448\\u0442\\u043e\\u0432\\u043d\\u0430 \\u0434\\u043e\\u0441\\u0442\\u0430\\u0432\\u043a\\u0430, \\u0433\\u0430\\u0440\\u0430\\u043d\\u0442\\u0456\\u044f \\u0432\\u0456\\u0434 \\u0432\\u0438\\u0440\\u043e\\u0431\\u043d\\u0438\\u043a\\u0430","meta_keyword":"","name":"\\u041d\\u0430\\u0437\\u0432\\u0430 \\u043c\\u0430\\u0433\\u0430\\u0437\\u0438\\u043d\\u0443","owner":"\\u0406\\u043c''\\u044f \\u0442\\u0430 \\u041f\\u0440\\u0456\\u0437\\u0432\\u0438\\u0449\\u0435","address":"\\u041d\\u0430\\u0437\\u0432\\u0430 \\u0432\\u0443\\u043b\\u0438\\u0446\\u0456 (\\u043f\\u0440\\u043e\\u0441\\u043f\\u0435\\u043a\\u0442\\u0443, \\u043f\\u0440\\u043e\\u0432\\u0443\\u043b\\u043a\\u0443), \\u043d\\u043e\\u043c\\u0435\\u0440 \\u0431\\u0443\\u0434\\u0438\\u043d\\u043a\\u0443 (\\u0456\\u0437 \\u043b\\u0456\\u0442\\u0435\\u0440\\u043e\\u044e \\u043a\\u043e\\u0440\\u043f\\u0443\\u0441\\u0443, \\u044f\\u043a\\u0449\\u043e \\u0454), \\u043d\\u043e\\u043c\\u0435\\u0440 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0438 \\u0430\\u0431\\u043e \\u043d\\u043e\\u043c\\u0435\\u0440 \\u043e\\u0444\\u0456\\u0441\\u0443 \\u0444\\u0456\\u0440\\u043c\\u0438. \\u041d\\u0435 \\u0434\\u043e\\u043f\\u0443\\u0441\\u043a\\u0430\\u0454\\u0442\\u044c\\u0441\\u044f \\u043d\\u0430\\u043f\\u0438\\u0441\\u0430\\u043d\\u043d\\u044f \\u043d\\u043e\\u043c\\u0435\\u0440\\u0456\\u0432 \\u0431\\u0443\\u0434\\u0438\\u043d\\u043a\\u0443 \\u0442\\u0430 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0438 \\u0447\\u0435\\u0440\\u0435\\u0437 \\u0434\\u0440\\u0456\\u0431\\r\\n\\u041d\\u0430\\u0437\\u0432\\u0430 \\u043d\\u0430\\u0441\\u0435\\u043b\\u0435\\u043d\\u043e\\u0433\\u043e \\u043f\\u0443\\u043d\\u043a\\u0442\\u0443\\r\\n\\u041d\\u0430\\u0437\\u0432\\u0430 \\u0440\\u0430\\u0439\\u043e\\u043d\\u0443 \\u0432 \\u043e\\u0431\\u043b\\u0430\\u0441\\u0442\\u0456 (\\u044f\\u043a\\u0449\\u043e \\u0454)\\r\\n\\u041d\\u0430\\u0437\\u0432\\u0430 \\u043e\\u0431\\u043b\\u0430\\u0441\\u0442\\u0456\\r\\n\\u041f\\u043e\\u0448\\u0442\\u043e\\u0432\\u0438\\u0439 \\u0456\\u043d\\u0434\\u0435\\u043a\\u0441 (\\u041e\\u0431\\u043e\\u0432\\u2019\\u044f\\u0437\\u043a\\u043e\\u0432\\u043e)\\r\\n\\u041a\\u0440\\u0430\\u0457\\u043d\\u0430 \\u043f\\u0440\\u0438\\u0437\\u043d\\u0430\\u0447\\u0435\\u043d\\u043d\\u044f (\\u0434\\u043b\\u044f \\u043c\\u0456\\u0436\\u043d\\u0430\\u0440\\u043e\\u0434\\u043d\\u0438\\u0445 \\u0432\\u0456\\u0434\\u043f\\u0440\\u0430\\u0432\\u043b\\u0435\\u043d\\u044c). \\u041d\\u0430\\u0437\\u0432\\u0443 \\u043a\\u0440\\u0430\\u0457\\u043d\\u0438 \\u043c\\u043e\\u0436\\u043d\\u0430 \\u043d\\u0435 \\u043f\\u0438\\u0441\\u0430\\u0442\\u0438, \\u044f\\u043a\\u0449\\u043e \\u043c\\u0430\\u0433\\u0430\\u0437\\u0438\\u043d \\u043f\\u0440\\u0430\\u0446\\u044e\\u0454 \\u043b\\u0438\\u0448\\u0435 \\u0432 \\u043c\\u0435\\u0436\\u0430\\u0445 \\u043a\\u0440\\u0430\\u0457\\u043d\\u0438","open":"\\u041f\\u0440\\u0438\\u0439\\u043e\\u043c \\u0437\\u0430\\u043c\\u043e\\u0432\\u043b\\u0435\\u043d\\u044c \\u0447\\u0435\\u0440\\u0435\\u0437 \\u0441\\u0430\\u0439\\u0442:\\r\\n\\u2013 24\\/7\\r\\n\\u2013 \\u043e\\u0431\\u0440\\u043e\\u0431\\u043a\\u0430 \\u0437\\u0430\\u043c\\u043e\\u0432\\u043b\\u0435\\u043d\\u044c \\u043c\\u0435\\u043d\\u0435\\u0434\\u0436\\u0435\\u0440\\u043e\\u043c: \\u0432 \\u0440\\u043e\\u0431\\u043e\\u0447\\u0438\\u0439 \\u0447\\u0430\\u0441\\r\\n\\r\\n\\u041f\\u0440\\u0438\\u0439\\u043e\\u043c \\u0434\\u0437\\u0432\\u0456\\u043d\\u043a\\u0456\\u0432:\\r\\n\\u2013 \\u041f\\u043d\\u2013\\u041f\\u0442: 09: 00-18: 00\\r\\n\\u2013 \\u0421\\u0431\\u2013\\u041d\\u0434: 09: 00-16: 00\\r\\n\\r\\n\\u0412\\u0438\\u0434\\u0430\\u0447\\u0430 \\u0437\\u0430\\u043c\\u043e\\u0432\\u043b\\u0435\\u043d\\u044c:\\r\\n\\u2013 \\u041f\\u043d\\u2013\\u041f\\u0442: 09: 00-18: 00\\r\\n\\u2013 \\u0421\\u0431\\u2013\\u041d\\u0434: \\u0432\\u0438\\u0445\\u0456\\u0434\\u043d\\u0438\\u0439","comment":""},"2":{"meta_title":"Store Name \\u2014 we\\u2019ll indicate the main theme here","meta_description":"Buy products of the main subject in our store &quot;STORE NAME&quot;. You can indicate the city or benefits like buy by installments, free delivery, manufacturer''s warranty","meta_keyword":"","name":"Store Name","owner":"Name and Surname","address":"Full Street address (number and road)\\r\\nTown\\r\\nCountry\\r\\nPostcode","open":"Acceptance of orders through the website:\\r\\n\\u2013 24\\/7\\r\\n\\u2013 processing orders by manager: during working hours\\r\\n\\r\\n\\r\\nReception of calls:\\r\\n\\u2013 Mon\\u2013Fri: 09:00\\u201318:00\\r\\n\\u2013 Sat\\u2013Sun: 09:00-16:00\\r\\n\\r\\nDelivery of orders:\\r\\n\\u2013 Mon\\u2013Fri: 09:00\\u201318:00\\r\\n\\u2013 Sat\\u2013Sun: day off","comment":""}}', 1);
 -- --------------------------------------------------------
 
 --
@@ -3522,14 +3678,23 @@ CREATE TABLE `oc_stock_status` (
 --
 
 INSERT INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
-(7, 1, 'В наличии'),
-(8, 1, 'Предзаказ'),
 (5, 1, 'Нет в наличии'),
 (6, 1, 'Ожидание 2-3 дня'),
+(7, 1, 'В наличии'),
+(8, 1, 'По предварительному заказу'),
+(9, 1, 'Снят с производства'),
+
+(5, 2, 'Out Of Stock'),
+(6, 2, '2 - 3 Days'),
 (7, 2, 'In Stock'),
 (8, 2, 'Pre-Order'),
-(5, 2, 'Out Of Stock'),
-(6, 2, '2 - 3 Days');
+(9, 2, 'Out of production'),
+
+(5, 3, 'Немає в наявності'),
+(6, 3, '2-3 дні очікування'),
+(7, 3, 'На складі'),
+(8, 3, 'За попереднім замовленням'),
+(9, 3, 'Знятий з виробництва');
 
 -- --------------------------------------------------------
 
@@ -3713,6 +3878,16 @@ CREATE TABLE `oc_url_alias` (
 --
 
 INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
+
+-- OpenCart Ready . Begin
+
+(502, 'error/not_found', '404'),
+(503, 'information/contact/success', 'contact-success'),
+(504, 'account/success', 'account-success'),
+(505, 'account/recurring', 'recurring'),
+
+-- OpenCart Ready . End
+
 (601, 'account/voucher', 'vouchers'),
 (602, 'account/wishlist', 'wishlist'),
 (603, 'account/account', 'my-account'),
