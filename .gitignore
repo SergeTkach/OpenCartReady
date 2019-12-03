@@ -53,7 +53,7 @@
 # You need to define all dirs separately (!)s
 
 # Cache Files
-#system/storage/cache/*
+system/storage/cache/*
 !system/storage/cache/index.html
 
 # Download Files
