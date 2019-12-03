@@ -3,7 +3,7 @@ class ControllerCommonHeader extends Controller {
 	public function index() {
 		$data['title'] = $this->document->getTitle();
 
-		if ($this->request->server['HTTPS']) {
+		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$data['base'] = HTTPS_SERVER;
 		} else {
 			$data['base'] = HTTP_SERVER;
@@ -14,7 +14,8 @@ class ControllerCommonHeader extends Controller {
 		$data['links'] = $this->document->getLinks();
 		$data['styles'] = $this->document->getStyles();
 		$data['scripts'] = $this->document->getScripts();
-		$data['lang'] = $this->language->get('code');
+		$data['code'] = $this->language->get('code');
+		$data['lang'] = $this->language->get('lang');
 		$data['direction'] = $this->language->get('direction');
 
 		$this->load->language('common/header');

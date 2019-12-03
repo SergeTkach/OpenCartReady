@@ -7,7 +7,7 @@ $_['date_format_long']              = 'l dS F Y';
 $_['time_format']                   = 'h:i:s A';
 $_['datetime_format']               = 'd/m/Y H:i:s';
 $_['decimal_point']                 = '.';
-$_['thousand_point']                = ',';
+$_['thousand_point']                = ' ';
 
 // Text
 $_['text_yes']                      = 'Yes';
@@ -138,6 +138,7 @@ $_['tab_activity']                  = 'Recent Activity';
 $_['tab_recurring']                 = 'Recurring';
 $_['tab_action']                    = 'Action';
 $_['tab_google']                    = 'Google';
+$_['tab_sms']                       = 'SMS';
 
 // Error
 $_['error_exception']               = 'Error Code(%s): %s in %s on line %s';

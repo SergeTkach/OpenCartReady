@@ -37,10 +37,10 @@
 # Content
 # ---------------------------------------
 
-/image*
-!index.html
-!/image/catalog/index.html
-!/image/*/index.html
+#/image*
+#!index.html
+#!/image/catalog/index.html
+#!/image/*/index.html
 
 # Images Cache
 /image/cache/*

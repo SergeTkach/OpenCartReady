@@ -1,6 +1,8 @@
 <?php
 class ControllerCatalogCategory extends Controller {
 	private $error = array();
+	private $category_id = 0;
+	private $path = array();
 
 	public function index() {
 		$this->load->language('catalog/category');
@@ -193,26 +195,22 @@ class ControllerCatalogCategory extends Controller {
 
 		$data['categories'] = array();
 
-		$filter_data = array(
-			'sort'  => $sort,
-			'order' => $order,
-			'start' => ($page - 1) * $this->config->get('config_limit_admin'),
-			'limit' => $this->config->get('config_limit_admin')
-		);
-
-		$category_total = $this->model_catalog_category->getTotalCategories();
-
-		$results = $this->model_catalog_category->getCategories($filter_data);
-
-		foreach ($results as $result) {
-			$data['categories'][] = array(
-				'category_id' => $result['category_id'],
-				'name'        => $result['name'],
-				'sort_order'  => $result['sort_order'],
-				'edit'        => $this->url->link('catalog/category/edit', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, true),
-				'delete'      => $this->url->link('catalog/category/delete', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, true)
-			);
+		if (isset($this->request->get['path'])) {
+			if ($this->request->get['path'] != '') {
+				$this->path = explode('_', $this->request->get['path']);
+				$this->category_id = end($this->path);
+				$this->session->data['path'] = $this->request->get['path'];
+			} else {
+				unset($this->session->data['path']);
+			}
+		} elseif (isset($this->session->data['path'])) {
+			$this->path = explode('_', $this->session->data['path']);
+			$this->category_id = end($this->path);
 		}
+
+		$data['categories'] = $this->getCategories(0);
+
+		$category_total = count($data['categories']);
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
@@ -274,6 +272,10 @@ class ControllerCatalogCategory extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
+		if (isset($this->request->get['path'])) {
+			$url .= '&path=' . $this->request->get['path'];
+		}
+
 		$pagination = new Pagination();
 		$pagination->total = $category_total;
 		$pagination->page = $page;
@@ -295,6 +297,17 @@ class ControllerCatalogCategory extends Controller {
 	}
 
 	protected function getForm() {
+    //CKEditor
+    if ($this->config->get('config_editor_default')) {
+        $this->document->addScript('view/javascript/ckeditor/ckeditor.js');
+        $this->document->addScript('view/javascript/ckeditor/ckeditor_init.js');
+    } else {
+        $this->document->addScript('view/javascript/summernote/summernote.js');
+        $this->document->addScript('view/javascript/summernote/lang/summernote-' . $this->language->get('lang') . '.js');
+        $this->document->addScript('view/javascript/summernote/opencart.js');
+        $this->document->addStyle('view/javascript/summernote/summernote.css');
+    }
+
 		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_form'] = !isset($this->request->get['category_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
@@ -306,6 +319,7 @@ class ControllerCatalogCategory extends Controller {
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_description'] = $this->language->get('entry_description');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
+		$data['entry_meta_h1'] = $this->language->get('entry_meta_h1');
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$data['entry_keyword'] = $this->language->get('entry_keyword');
@@ -341,12 +355,6 @@ class ControllerCatalogCategory extends Controller {
 			$data['error_name'] = $this->error['name'];
 		} else {
 			$data['error_name'] = array();
-		}
-
-		if (isset($this->error['meta_title'])) {
-			$data['error_meta_title'] = $this->error['meta_title'];
-		} else {
-			$data['error_meta_title'] = array();
 		}
 
 		if (isset($this->error['keyword'])) {
@@ -400,10 +408,13 @@ class ControllerCatalogCategory extends Controller {
 		}
 
 		$data['token'] = $this->session->data['token'];
+		$data['ckeditor'] = $this->config->get('config_editor_default');
 
 		$this->load->model('localisation/language');
 
 		$data['languages'] = $this->model_localisation_language->getLanguages();
+
+		$data['lang'] = $this->language->get('lang');
 
 		if (isset($this->request->post['category_description'])) {
 			$data['category_description'] = $this->request->post['category_description'];
@@ -413,12 +424,13 @@ class ControllerCatalogCategory extends Controller {
 			$data['category_description'] = array();
 		}
 
-		if (isset($this->request->post['path'])) {
-			$data['path'] = $this->request->post['path'];
-		} elseif (!empty($category_info)) {
-			$data['path'] = $category_info['path'];
-		} else {
-			$data['path'] = '';
+		// Categories
+		$categories = $this->model_catalog_category->getAllCategories();
+
+		$data['categories'] = $this->getAllCategories($categories);
+
+		if (isset($category_info)) {
+			unset($data['categories'][$category_info['category_id']]);
 		}
 
 		if (isset($this->request->post['parent_id'])) {
@@ -552,10 +564,6 @@ class ControllerCatalogCategory extends Controller {
 			if ((utf8_strlen($value['name']) < 2) || (utf8_strlen($value['name']) > 255)) {
 				$this->error['name'][$language_id] = $this->language->get('error_name');
 			}
-
-			if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
-				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
-			}
 		}
 
 		if (isset($this->request->get['category_id']) && $this->request->post['parent_id']) {
@@ -606,6 +614,111 @@ class ControllerCatalogCategory extends Controller {
 
 		return !$this->error;
 	}
+
+	private function getCategories($parent_id, $parent_path = '', $indent = '') {
+		$category_id = array_shift($this->path);
+
+		$output = array();
+
+		static $href_category = null;
+		static $href_action = null;
+
+		if ($href_category === null) {
+			$href_category = $this->url->link('catalog/category', 'token=' . $this->session->data['token'] . '&path=', 'SSL');
+			$href_action = $this->url->link('catalog/category/update', 'token=' . $this->session->data['token'] . '&category_id=', 'SSL');
+		}
+
+		$url = '';
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		$results = $this->model_catalog_category->getCategoriesByParentId($parent_id);
+
+		foreach ($results as $result) {
+			$path = $parent_path . $result['category_id'];
+
+			$href = ($result['children']) ? $href_category . $path : '';
+
+			$name = $result['name'];
+
+			if ($category_id == $result['category_id']) {
+				$name = '<b>' . $name . '</b>';
+
+				$data['breadcrumbs'][] = array(
+					'text'      => $result['name'],
+					'href'      => $href,
+					'separator' => ' :: '
+				);
+
+				$href = '';
+			}
+
+			$selected = isset($this->request->post['selected']) && in_array($result['category_id'], $this->request->post['selected']);
+
+			$action = array();
+
+			$action[] = array(
+				'text' => $this->language->get('text_edit'),
+				'href' => $href_action . $result['category_id']
+			);
+
+			$output[$result['category_id']] = array(
+				'category_id' => $result['category_id'],
+				'name'        => $name,
+				'sort_order'  => $result['sort_order'],
+				'selected'    => $selected,
+				'action'      => $action,
+				'edit'        => $this->url->link('catalog/category/edit', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, 'SSL'),
+				'delete'      => $this->url->link('catalog/category/delete', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, 'SSL'),
+				'href'        => $href,
+				'indent'      => $indent
+			);
+
+			if ($category_id == $result['category_id']) {
+				$output += $this->getCategories($result['category_id'], $path . '_', $indent . str_repeat('&nbsp;', 8));
+			}
+		}
+
+		return $output;
+	}
+
+	private function getAllCategories($categories, $parent_id = 0, $parent_name = '') {
+		$output = array();
+
+		if (array_key_exists($parent_id, $categories)) {
+			if ($parent_name != '') {
+				//$parent_name .= $this->language->get('text_separator');
+				$parent_name .= ' &gt; ';
+			}
+
+			foreach ($categories[$parent_id] as $category) {
+				$output[$category['category_id']] = array(
+					'category_id' => $category['category_id'],
+					'name'        => $parent_name . $category['name']
+				);
+
+				$output += $this->getAllCategories($categories, $category['category_id'], $parent_name . $category['name']);
+			}
+		}
+
+    uasort($output, array($this, 'sortByName'));
+    
+		return $output;
+	}
+
+  function sortByName($a, $b) {
+    return strcmp($a['name'], $b['name']);
+  }
 
 	public function autocomplete() {
 		$json = array();

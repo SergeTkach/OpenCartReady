@@ -630,6 +630,14 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
     display: none;
     visibility: unset;
 }
+
+
+/* CKEditor */
+div.ckeditor {
+  z-index: 10011;
+}
+/* CKEditor */
+
 /* Menu Fix For System -> Layout -> Banner */
 
 /* Fix form-group margin inside the modal */
@@ -638,9 +646,9 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 }
 /* Fixed Sumernote Button Height */
 .note-toolbar.panel-heading i {
-	font-size: 14px;
+    font-size: 14px;
 }
 /* Filemanager Folder Size */
 #filemanager .fa-folder.fa-5x {
-	font-size: 10.5em;
+    font-size: 10.5em;
 }

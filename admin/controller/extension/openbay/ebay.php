@@ -1270,6 +1270,17 @@ class ControllerExtensionOpenbayEbay extends Controller {
 	}
 
 	public function create() {
+    //CKEditor
+    if ($this->config->get('config_editor_default')) {
+        $this->document->addScript('view/javascript/ckeditor/ckeditor.js');
+        $this->document->addScript('view/javascript/ckeditor/ckeditor_init.js');
+    } else {
+        $this->document->addScript('view/javascript/summernote/summernote.js');
+        $this->document->addScript('view/javascript/summernote/lang/summernote-' . $this->language->get('lang') . '.js');
+        $this->document->addScript('view/javascript/summernote/opencart.js');
+        $this->document->addStyle('view/javascript/summernote/summernote.css');
+    }
+
 		if ($this->checkConfig() == true) {
 			if (!empty($this->request->get['product_id'])) {
 				$this->load->language('extension/openbay/ebay_new');
@@ -1290,7 +1301,10 @@ class ControllerExtensionOpenbayEbay extends Controller {
 				$data['action']   = $this->url->link('extension/openbay/ebay/create', 'token=' . $this->session->data['token'], true);
 				$data['cancel']   = $this->url->link('extension/openbay/items', 'token=' . $this->session->data['token'], true);
 				$data['token']    = $this->session->data['token'];
+				$data['ckeditor'] = $this->config->get('config_editor_default');
 
+				$data['lang'] = $this->language->get('lang');
+				
 				$data['breadcrumbs'] = array();
 				$data['breadcrumbs'][] = array(
 					'href'      => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true),
@@ -1315,6 +1329,8 @@ class ControllerExtensionOpenbayEbay extends Controller {
 				$setting = array();
 
 				$setting['dispatch_times'] = $this->openbay->ebay->getSetting('dispatch_time_max');
+
+				$data['lang'] = $this->language->get('lang');
 
 				if (is_array($setting['dispatch_times'])) {
 					ksort($setting['dispatch_times']);

@@ -321,7 +321,7 @@ final class Openbay {
 		$emails = explode(',', $this->config->get('config_alert_emails'));
 
 		foreach ($emails as $email) {
-			if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			if ($email && preg_match($this->config->get('config_mail_regexp'), $email)) {
 				$mail->setTo($email);
 				$mail->send();
 			}

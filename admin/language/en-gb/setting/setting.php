@@ -32,7 +32,8 @@ $_['text_general']                 = 'General';
 $_['text_security']                = 'Security';
 $_['text_upload']                  = 'Uploads';
 $_['text_error']                   = 'Error Handling';
-
+$_['text_summer_note']             = 'Summer Note';
+$_['text_ckeditor']                = 'CKEditor';
 // Entry
 $_['entry_meta_title']             = 'Meta Title';
 $_['entry_meta_description']       = 'Meta Tag Description';
@@ -116,6 +117,7 @@ $_['entry_secure']                 = 'Use SSL';
 $_['entry_shared']                 = 'Use Shared Sessions';
 $_['entry_robots']                 = 'Robots';
 $_['entry_seo_url']                = 'Use SEO URLs';
+$_['entry_seo_pro_utm']            = 'UTM-labels for SeoPro';
 $_['entry_file_max_size']	       = 'Max File Size';
 $_['entry_file_ext_allowed']       = 'Allowed File Extensions';
 $_['entry_file_mime_allowed']      = 'Allowed File Mime Types';
@@ -181,6 +183,7 @@ $_['help_secure']                  = 'To use SSL check with your host if a SSL c
 $_['help_shared']                  = 'Try to share the session cookie between stores so the cart can be passed between different domains.';
 $_['help_robots']                  = 'A list of web crawler user agents that shared sessions will not be used with. Use separate lines for each user agent.';
 $_['help_seo_url']                 = 'To use SEO URLs, apache module mod-rewrite must be installed and you need to rename the htaccess.txt to .htaccess.';
+$_['help_seo_pro_utm']             = 'Use a new line for each value!';
 $_['help_file_max_size']		   = 'The maximum image file size you can upload in Image Manager. Enter as byte.';
 $_['help_file_ext_allowed']        = 'Add which file extensions are allowed to be uploaded. Use a new line for each value.';
 $_['help_file_mime_allowed']       = 'Add which file mime types are allowed to be uploaded. Use a new line for each value.';
@@ -188,6 +191,16 @@ $_['help_maintenance']             = 'Prevents customers from browsing your stor
 $_['help_password']                = 'Allow forgotten password to be used for the admin. This will be disabled automatically if the system detects a hack attempt.';
 $_['help_encryption']              = 'Please provide a secret key that will be used to encrypt private information when processing orders.';
 $_['help_compression']             = 'GZIP for more efficient transfer to requesting clients. Compression level must be between 0 - 9.';
+$_['help_compression']                 = 'GZIP for more efficient transfer to requesting clients. Compression level must be between 0 - 9.';
+$_['help_mail_regexp']                 = 'Do not change anything in this field, if its purpose is not clear to you!';
+$_['help_editor_default']              = 'Sets the visual editor the default system. If you select the editor CKEditor, in some third-party modules, it can not operate.';
+$_['help_google_analytics']            = 'Войдите в учетную запись <a href="http://www.google.com/analytics/" target="_blank"><u>Google Analytics</u></a> и создайте профиль сайта. Затем, добавьте в поле ниже сформированный код:';
+$_['help_google_captcha']              = 'Перейдите на страницу <a href="https://www.google.com/recaptcha/intro/index.html" target="_blank"><u>Google reCAPTCHA</u></a> и зарегистрируйте сайт. Затем, вставьте выданные ключи в поля ниже:';
+$_['help_sms_to']                      = 'В международном формате, только цифры 7926xxxxxxx';
+$_['help_sms_from']                    = 'Не более 11 символов, либо номер телефона до 15 цифр';
+$_['help_sms_copy']                    = 'Указывать через запятую, в международном формате, без разделителей 7926xxxxxxx';
+$_['help_sms_message']                 = 'Можно использовать теги:<br/>{ID} - номер заказа<br/>{DATE} - дата заказа<br/>{TIME} - время заказа<br/>{SUM} - сумма заказа<br/>{PHONE} - телефон клиента';
+$_['help_google_captcha']              = 'Go to <a href="https://www.google.com/recaptcha/intro/index.html" target="_blank"><u>Google reCAPTCHA page</u></a> and register your website.';
 
 // Error
 $_['error_warning']                = 'Warning: Please check the form carefully for errors!';

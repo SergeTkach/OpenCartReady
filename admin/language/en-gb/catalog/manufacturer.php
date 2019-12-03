@@ -17,12 +17,17 @@ $_['column_sort_order'] = 'Sort Order';
 $_['column_action']     = 'Action';
 
 // Entry
-$_['entry_name']        = 'Manufacturer Name';
-$_['entry_store']       = 'Stores';
-$_['entry_keyword']     = 'SEO URL';
-$_['entry_image']       = 'Image';
-$_['entry_sort_order']  = 'Sort Order';
-$_['entry_type']        = 'Type';
+$_['entry_name']             = 'Manufacturer Name';
+$_['entry_store']            = 'Stores';
+$_['entry_keyword']          = 'SEO Keyword';
+$_['entry_image']            = 'Image';
+$_['entry_sort_order']       = 'Sort Order';
+$_['entry_type']             = 'Type';
+$_['entry_description']      = 'Description';
+$_['entry_meta_title']       = 'Meta Tag Title';
+$_['entry_meta_h1']          = 'HTML Tag H1';
+$_['entry_meta_keyword']     = 'Meta Tag Keywords';
+$_['entry_meta_description'] = 'Meta Tag Description';
 
 // Help
 $_['help_keyword']      = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';

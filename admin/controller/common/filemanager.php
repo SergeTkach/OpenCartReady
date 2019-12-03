@@ -1,19 +1,44 @@
 <?php
 class ControllerCommonFileManager extends Controller {
+	protected function translit($text) {
+		$rus = array("а","А","б","Б","в","В","г","Г","д","Д","е","Е","ё","Ё","є","Є","ж", "Ж",  "з","З","и","И","і","І","ї","Ї","й","Й","к","К","л","Л","м","М","н","Н","о","О","п","П","р","Р", "с","С","т","Т","у","У","ф","Ф","х","Х","ц","Ц","ч", "Ч", "ш", "Ш", "щ",  "Щ", "ъ","Ъ", "ы","Ы","ь","Ь","э","Э","ю", "Ю", "я","Я",'/',' ');
+		$eng =array("a","A","b","B","v","V","g","G","d","D","e","E","e","E","e","E", "zh","ZH","z","Z","i","I","i","I","yi","YI","j","J","k","K","l","L","m","M","n","N","o","O", "p","P","r","R","s","S","t","T","u","U","f","F","h","H","c","C","ch","CH", "sh","SH","sch","SCH","", "", "y","Y","","","e","E","ju","JU","ja","JA",'','');
+		$text = strtolower(str_replace($rus,$eng,$text));
+    $disallow_symbols = array(
+        ' ' => '-', '\\' => '-', '/' => '-', ':' => '-', '*' => '',
+        '?' => '', ',' => '', '"' => '', '\'' => '', '<' => '', '>' => '', '|' => ''
+    );
+		return trim(strip_tags(str_replace(array_keys($disallow_symbols), array_values($disallow_symbols), trim(html_entity_decode($text, ENT_QUOTES, 'UTF-8')))), '-');
+	}
+
 	public function index() {
 		$this->load->language('common/filemanager');
 
 		// Find which protocol to use to pass the full image link back
-		if ($this->request->server['HTTPS']) {
+		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$server = HTTPS_CATALOG;
 		} else {
 			$server = HTTP_CATALOG;
 		}
 
 		if (isset($this->request->get['filter_name'])) {
-			$filter_name = rtrim(str_replace('*', '', $this->request->get['filter_name']), '/');
+			$filter_name = rtrim(str_replace(array('*', '/'), '', $this->request->get['filter_name']), '/');
 		} else {
 			$filter_name = null;
+		}
+
+		// Save current directory
+		if (!isset($this->request->get['directory'])) {
+			if (!isset($this->request->get['parent'])) { //New call Filemanager
+				$this->request->get['directory'] = isset($this->request->cookie['file_manager']['directory']) ? $this->request->cookie['file_manager']['directory'] : '';
+				$this->request->get['page'] = isset($this->request->cookie['file_manager']['page']) ? $this->request->cookie['file_manager']['page'] : 1;
+			} else { // Trying to go back to the root directory, delete cookies
+				setcookie('file_manager[directory]', '', time() - 3600, '/', $this->request->server['HTTP_HOST']);
+				setcookie('file_manager[page]', '', time() - 3600, '/', $this->request->server['HTTP_HOST']);
+			}
+		} else {
+			setcookie('file_manager[directory]', $this->request->get['directory'], time() + 60 * 60 * 24 * 30, '/', $this->request->server['HTTP_HOST']);
+			setcookie('file_manager[page]', isset($this->request->get['page']) ? $this->request->get['page'] : 1, time() + 60 * 60 * 24 * 30, '/', $this->request->server['HTTP_HOST']);
 		}
 
 		// Make sure we have the correct directory
@@ -36,7 +61,7 @@ class ControllerCommonFileManager extends Controller {
 
 		$this->load->model('tool/image');
 
-		if (substr(str_replace('\\', '/', realpath($directory . '/' . $filter_name)), 0, strlen(DIR_IMAGE . 'catalog')) == DIR_IMAGE . 'catalog') {
+		if (substr(str_replace('\\', '/', realpath($directory) . '/' . $filter_name), 0, strlen(DIR_IMAGE . 'catalog')) == DIR_IMAGE . 'catalog') {
 			// Get directories
 			$directories = glob($directory . '/' . $filter_name . '*', GLOB_ONLYDIR);
 
@@ -66,6 +91,10 @@ class ControllerCommonFileManager extends Controller {
 
 			if (is_dir($image)) {
 				$url = '';
+
+        if (isset($this->request->get['cke'])) {
+          $url .= '&cke=' . $this->request->get['cke'];
+        }
 
 				if (isset($this->request->get['target'])) {
 					$url .= '&target=' . $this->request->get['target'];
@@ -129,6 +158,13 @@ class ControllerCommonFileManager extends Controller {
 			$data['target'] = '';
 		}
 
+		// CKEditor
+		if (isset($this->request->get['cke'])) {
+			$data['cke'] = $this->request->get['cke'];
+		} else {
+			$data['cke'] = '';
+		}
+
 		// Return the thumbnail for the file manager to show a thumbnail
 		if (isset($this->request->get['thumb'])) {
 			$data['thumb'] = $this->request->get['thumb'];
@@ -137,7 +173,7 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		// Parent
-		$url = '';
+		$url = '&parent=parent';
 
 		if (isset($this->request->get['directory'])) {
 			$pos = strrpos($this->request->get['directory'], '/');
@@ -146,6 +182,10 @@ class ControllerCommonFileManager extends Controller {
 				$url .= '&directory=' . urlencode(substr($this->request->get['directory'], 0, $pos));
 			}
 		}
+
+    if (isset($this->request->get['cke'])) {
+      $url .= '&cke=' . $this->request->get['cke'];
+    }
 
 		if (isset($this->request->get['target'])) {
 			$url .= '&target=' . $this->request->get['target'];
@@ -163,6 +203,10 @@ class ControllerCommonFileManager extends Controller {
 		if (isset($this->request->get['directory'])) {
 			$url .= '&directory=' . urlencode($this->request->get['directory']);
 		}
+
+    if (isset($this->request->get['cke'])) {
+      $url .= '&cke=' . $this->request->get['cke'];
+    }
 
 		if (isset($this->request->get['target'])) {
 			$url .= '&target=' . $this->request->get['target'];
@@ -183,6 +227,10 @@ class ControllerCommonFileManager extends Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
+
+    if (isset($this->request->get['cke'])) {
+      $url .= '&cke=' . $this->request->get['cke'];
+    }
 
 		if (isset($this->request->get['target'])) {
 			$url .= '&target=' . $this->request->get['target'];
@@ -244,7 +292,7 @@ class ControllerCommonFileManager extends Controller {
 			foreach ($files as $file) {
 				if (is_file($file['tmp_name'])) {
 					// Sanitize the filename
-					$filename = basename(html_entity_decode($file['name'], ENT_QUOTES, 'UTF-8'));
+					$filename = basename($this->translit(html_entity_decode($file['name'], ENT_QUOTES, 'UTF-8')));
 
 					// Validate the filename length
 					if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 255)) {
@@ -303,6 +351,9 @@ class ControllerCommonFileManager extends Controller {
 
 		$json = array();
 
+		//Translit Folder Name
+		$this->request->post['folder'] = $this->translit($this->request->post['folder']);
+
 		// Check user has permission
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
 			$json['error'] = $this->language->get('error_permission');
@@ -336,7 +387,7 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		if (!isset($json['error'])) {
-			mkdir($directory . '/' . $folder, 0777);
+			@mkdir($directory . '/' . $folder, 0777);
 			chmod($directory . '/' . $folder, 0777);
 
 			@touch($directory . '/' . $folder . '/' . 'index.html');
@@ -381,7 +432,7 @@ class ControllerCommonFileManager extends Controller {
 
 				// If path is just a file delete it
 				if (is_file($path)) {
-					unlink($path);
+					@unlink($path);
 
 				// If path is a directory beging deleting each file and sub folder
 				} elseif (is_dir($path)) {
@@ -411,7 +462,7 @@ class ControllerCommonFileManager extends Controller {
 					foreach ($files as $file) {
 						// If file just delete
 						if (is_file($file)) {
-							unlink($file);
+							@unlink($file);
 
 						// If directory use the remove directory function
 						} elseif (is_dir($file)) {

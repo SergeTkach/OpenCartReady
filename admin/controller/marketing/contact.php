@@ -7,6 +7,17 @@ class ControllerMarketingContact extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+    //CKEditor
+    if ($this->config->get('config_editor_default')) {
+        $this->document->addScript('view/javascript/ckeditor/ckeditor.js');
+        $this->document->addScript('view/javascript/ckeditor/ckeditor_init.js');
+    } else {
+        $this->document->addScript('view/javascript/summernote/summernote.js');
+        $this->document->addScript('view/javascript/summernote/lang/summernote-' . $this->language->get('lang') . '.js');
+        $this->document->addScript('view/javascript/summernote/opencart.js');
+        $this->document->addStyle('view/javascript/summernote/summernote.css');
+    }
+
 		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_default'] = $this->language->get('text_default');
@@ -36,6 +47,9 @@ class ControllerMarketingContact extends Controller {
 		$data['button_cancel'] = $this->language->get('button_cancel');
 
 		$data['token'] = $this->session->data['token'];
+		$data['ckeditor'] = $this->config->get('config_editor_default');
+
+		$data['lang'] = $this->language->get('lang');
 
 		$data['breadcrumbs'] = array();
 
@@ -169,6 +183,7 @@ class ControllerMarketingContact extends Controller {
 
 								if ($customer_info) {
 									$emails[] = $customer_info['email'];
+									$email_total++;
 								}
 							}
 						}
@@ -217,9 +232,7 @@ class ControllerMarketingContact extends Controller {
 					$start = ($page - 1) * 10;
 					$end = $start + 10;
 
-					if ($end < $email_total) {
-						$json['success'] = sprintf($this->language->get('text_sent'), $start, $email_total);
-					}
+					$json['success'] = sprintf($this->language->get('text_sent'), $start, $email_total);
 
 					if ($end < $email_total) {
 						$json['next'] = str_replace('&amp;', '&', $this->url->link('marketing/contact/send', 'token=' . $this->session->data['token'] . '&page=' . ($page + 1), true));
@@ -236,7 +249,7 @@ class ControllerMarketingContact extends Controller {
 					$message .= '</html>' . "\n";
 
 					foreach ($emails as $email) {
-						if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+						if (preg_match($this->config->get('config_mail_regexp'), $email)) {
 							$mail = new Mail();
 							$mail->protocol = $this->config->get('config_mail_protocol');
 							$mail->parameter = $this->config->get('config_mail_parameter');

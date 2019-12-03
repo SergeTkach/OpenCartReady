@@ -574,6 +574,7 @@ $('#button-review').on('click', function() {
 			}
 		}
 	});
+    grecaptcha.reset();
 });
 
 $(document).ready(function() {
@@ -585,5 +586,18 @@ $(document).ready(function() {
 		}
 	});
 });
+
+$(document).ready(function() {
+	var hash = window.location.hash;
+	if (hash) {
+		var hashpart = hash.split('#');
+		var  vals = hashpart[1].split('-');
+		for (i=0; i<vals.length; i++) {
+			$('#product').find('select option[value="'+vals[i]+'"]').attr('selected', true).trigger('select');
+			$('#product').find('input[type="radio"][value="'+vals[i]+'"]').attr('checked', true).trigger('click');
+			$('#product').find('input[type="checkbox"][value="'+vals[i]+'"]').attr('checked', true).trigger('click');
+		}
+	}
+})
 //--></script>
 <?php echo $footer; ?>

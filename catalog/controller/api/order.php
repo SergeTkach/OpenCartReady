@@ -821,6 +821,29 @@ class ControllerApiOrder extends Controller {
 			$order_info = $this->model_checkout_order->getOrder($order_id);
 
 			if ($order_info) {
+				$this->load->language('extension/payment/ocstore_payeer');
+				if (($this->config->get('ocstore_payeer_order_later_status_id') == $this->request->post['order_status_id']) && ($order_info['payment_code'] == 'ocstore_payeer')) {
+						$onpay_url = sprintf('%sindex.php/?route=extension/payment/ocstore_payeer/laterpay&order_id=%s&order_tt=%s',
+												defined('HTTPS_SERVER') ? HTTPS_SERVER : HTTP_SERVER,
+												$order_info['order_id'],
+												$order_info['total']
+						);
+						$this->request->post['comment'] .= "\n" . sprintf($this->language->get('text_payeer_onpay'), $onpay_url);
+				}
+
+				$this->load->language('extension/payment/ocstore_yk');
+				if (($this->config->get('ocstore_yk_order_later_status_id') == $this->request->post['order_status_id']) && (strpos($order_info['payment_code'], 'ocstore_yk') !== false)) {
+					$onpay_url = sprintf('%sindex.php/?route=extension/payment/ocstore_yk/laterpay&order_id=%s&order_ttl=%s&paymentType=%s',
+																isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1')) ? $this->config->get('config_ssl') : $this->config->get('config_url'),
+																$order_info['order_id'],
+																$order_info['total'],
+																$order_info['payment_code']
+															 );
+					$this->request->post['comment'] .= "\n" . sprintf($this->language->get('text_yk_onpay'), $onpay_url);
+				}
+
+				$this->load->language('api/order');
+
 				$this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify'], $this->request->post['override']);
 
 				$json['success'] = $this->language->get('text_success');

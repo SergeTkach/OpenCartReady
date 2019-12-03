@@ -19,15 +19,18 @@ $_['text_amount']            = 'Fixed Amount';
 $_['column_name']            = 'Product Name';
 $_['column_model']           = 'Model';
 $_['column_image']           = 'Image';
+$_['column_category']        = 'Category';
 $_['column_price']           = 'Price';
 $_['column_quantity']        = 'Quantity';
 $_['column_status']          = 'Status';
 $_['column_action']          = 'Action';
 
 // Entry
+$_['entry_main_category']    = 'Main category';
 $_['entry_name']             = 'Product Name';
 $_['entry_description']      = 'Description';
 $_['entry_meta_title'] 	     = 'Meta Tag Title';
+$_['entry_meta_h1']          = 'HTML Tag H1';
 $_['entry_meta_keyword'] 	 = 'Meta Tag Keywords';
 $_['entry_meta_description'] = 'Meta Tag Description';
 $_['entry_keyword']          = 'SEO URL';

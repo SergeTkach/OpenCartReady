@@ -1026,7 +1026,7 @@ class ControllerMarketingAffiliate extends Controller {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || (!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL))) {
+		if ((utf8_strlen($this->request->post['email']) > 96) || (!preg_match($this->config->get('config_mail_regexp'), $this->request->post['email']))) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
@@ -1035,7 +1035,7 @@ class ControllerMarketingAffiliate extends Controller {
 				$this->error['cheque'] = $this->language->get('error_cheque');
 			}
 		} elseif ($this->request->post['payment'] == 'paypal') {
-			if ((utf8_strlen($this->request->post['paypal']) > 96) || !filter_var($this->request->post['paypal'], FILTER_VALIDATE_EMAIL)) {
+			if ((utf8_strlen($this->request->post['paypal']) > 96) || !preg_match($this->config->get('config_mail_regexp'), $this->request->post['paypal'])) {
 				$this->error['paypal'] = $this->language->get('error_paypal');
 			}
 		} elseif ($this->request->post['payment'] == 'bank') {

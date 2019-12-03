@@ -22,6 +22,19 @@ class ControllerSettingStore extends Controller {
 		$this->load->model('setting/store');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+      $this->load->model('localisation/language');
+      $language_info = $this->model_localisation_language->getLanguageByCode($this->request->post['config_language']);
+      $front_language_id = $language_info['language_id'];
+
+      $this->request->post['config_meta_title'] = $this->request->post['config_langdata'][$front_language_id]['meta_title'];
+      $this->request->post['config_meta_description'] = $this->request->post['config_langdata'][$front_language_id]['meta_description'];
+      $this->request->post['config_meta_keyword'] = $this->request->post['config_langdata'][$front_language_id]['meta_keyword'];
+      $this->request->post['config_name'] = $this->request->post['config_langdata'][$front_language_id]['name'];
+      $this->request->post['config_owner'] = $this->request->post['config_langdata'][$front_language_id]['owner'];
+      $this->request->post['config_address'] = $this->request->post['config_langdata'][$front_language_id]['address'];
+      $this->request->post['config_address'] = $this->request->post['config_langdata'][$front_language_id]['open'];
+      $this->request->post['config_address'] = $this->request->post['config_langdata'][$front_language_id]['comment'];
+
 			$store_id = $this->model_setting_store->addStore($this->request->post);
 
 			$this->load->model('setting/setting');
@@ -44,6 +57,17 @@ class ControllerSettingStore extends Controller {
 		$this->load->model('setting/store');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+      $this->load->model('localisation/language');
+      $language_info = $this->model_localisation_language->getLanguageByCode($this->request->post['config_language']);
+      $front_language_id = $language_info['language_id'];
+
+      $this->request->post['config_meta_title'] = $this->request->post['config_langdata'][$front_language_id]['meta_title'];
+      $this->request->post['config_meta_description'] = $this->request->post['config_langdata'][$front_language_id]['meta_description'];
+      $this->request->post['config_meta_keyword'] = $this->request->post['config_langdata'][$front_language_id]['meta_keyword'];
+      $this->request->post['config_name'] = $this->request->post['config_langdata'][$front_language_id]['name'];
+      $this->request->post['config_owner'] = $this->request->post['config_langdata'][$front_language_id]['owner'];
+      $this->request->post['config_address'] = $this->request->post['config_langdata'][$front_language_id]['address'];
+
 			$this->model_setting_store->editStore($this->request->get['store_id'], $this->request->post);
 
 			$this->load->model('setting/setting');
@@ -265,12 +289,6 @@ class ControllerSettingStore extends Controller {
 			$data['error_url'] = '';
 		}
 
-		if (isset($this->error['meta_title'])) {
-			$data['error_meta_title'] = $this->error['meta_title'];
-		} else {
-			$data['error_meta_title'] = '';
-		}
-
 		if (isset($this->error['name'])) {
 			$data['error_name'] = $this->error['name'];
 		} else {
@@ -299,6 +317,12 @@ class ControllerSettingStore extends Controller {
 			$data['error_telephone'] = $this->error['telephone'];
 		} else {
 			$data['error_telephone'] = '';
+		}
+
+		if (isset($this->error['meta_title'])) {
+			$data['error_meta_title'] = $this->error['meta_title'];
+		} else {
+			$data['error_meta_title'] = array();
 		}
 
 		if (isset($this->error['customer_group_display'])) {
@@ -354,6 +378,14 @@ class ControllerSettingStore extends Controller {
 		}
 
 		$data['token'] = $this->session->data['token'];
+
+		if (isset($this->request->post['config_langdata'])) {
+			$data['config_langdata'] = $this->request->post['config_langdata'];
+		} elseif (isset($store_info['config_langdata'])) {
+			$data['config_langdata'] = $store_info['config_langdata'];
+		} else {
+			$data['config_langdata'] = '';
+		}
 
 		if (isset($this->request->post['config_url'])) {
 			$data['config_url'] = $this->request->post['config_url'];
@@ -748,27 +780,17 @@ class ControllerSettingStore extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
+		foreach ($this->request->post['config_langdata'] as $language_id => $value) {
+			if (!$value['name']) {
+				$this->error['name'][$language_id] = $this->language->get('error_name');
+			}
+		}
+
 		if (!$this->request->post['config_url']) {
 			$this->error['url'] = $this->language->get('error_url');
 		}
 
-		if (!$this->request->post['config_meta_title']) {
-			$this->error['meta_title'] = $this->language->get('error_meta_title');
-		}
-
-		if (!$this->request->post['config_name']) {
-			$this->error['name'] = $this->language->get('error_name');
-		}
-
-		if ((utf8_strlen($this->request->post['config_owner']) < 3) || (utf8_strlen($this->request->post['config_owner']) > 64)) {
-			$this->error['owner'] = $this->language->get('error_owner');
-		}
-
-		if ((utf8_strlen($this->request->post['config_address']) < 3) || (utf8_strlen($this->request->post['config_address']) > 256)) {
-			$this->error['address'] = $this->language->get('error_address');
-		}
-
-		if ((utf8_strlen($this->request->post['config_email']) > 96) || !filter_var($this->request->post['config_email'], FILTER_VALIDATE_EMAIL)) {
+		if ((utf8_strlen($this->request->post['config_email']) > 96) || !preg_match($this->config->get('config_mail_regexp'), $this->request->post['config_email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 

@@ -4,7 +4,7 @@ class ControllerExtensionExtensionPayment extends Controller {
 
 	public function index() {
 		$this->load->language('extension/extension/payment');
-		
+
 		$this->load->model('extension/extension');
 
 		$this->getList();
@@ -94,32 +94,48 @@ class ControllerExtensionExtensionPayment extends Controller {
 		// Compatibility code for old extension folders
 		$files = glob(DIR_APPLICATION . 'controller/{extension/payment,payment}/*.php', GLOB_BRACE);
 
-		if ($files) {
-			foreach ($files as $file) {
-				$extension = basename($file, '.php');
+		$this->load->model('user/user_group');
 
-				$this->load->language('extension/payment/' . $extension);
+		$user_group_info = $this->model_user_user_group->getUserGroup($this->user->user_group_id);
 
-				$text_link = $this->language->get('text_' . $extension);
-
-				if ($text_link != 'text_' . $extension) {
-					$link = $this->language->get('text_' . $extension);
-				} else {
-					$link = '';
-				}
-
-				$data['extensions'][] = array(
-					'name'       => $this->language->get('heading_title'),
-					'link'       => $link,
-					'status'     => $this->config->get($extension . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-					'sort_order' => $this->config->get($extension . '_sort_order'),
-					'install'   => $this->url->link('extension/extension/payment/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, true),
-					'uninstall' => $this->url->link('extension/extension/payment/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, true),
-					'installed' => in_array($extension, $extensions),
-					'edit'      => $this->url->link('extension/payment/' . $extension, 'token=' . $this->session->data['token'], true)
-				);
-			}
+		if(isset($user_group_info['permission']['hiden'])) {
+			$hiden = $user_group_info['permission']['hiden'];
+		} else {
+			$hiden = array();
 		}
+
+		$data['hiden'] = false;
+
+		if ($files) {
+            foreach ($files as $file) {
+                $extension = basename($file, '.php');
+
+                $this->load->language('extension/payment/' . $extension);
+                if (!in_array('extension/payment/' . $extension, $hiden)) {
+                    $this->load->language('extension/payment/' . $extension);
+
+                    $text_link = $this->language->get('text_' . $extension);
+
+                    if ($text_link != 'text_' . $extension) {
+                        $link = $this->language->get('text_' . $extension);
+                    } else {
+                        $link = '';
+                    }
+
+                    $data['extensions'][] = array(
+                        'name' => $this->language->get('heading_title'),
+                        'link' => $link,
+                        'status' => $this->config->get($extension . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+                        'sort_order' => $this->config->get($extension . '_sort_order'),
+                        'install' => $this->url->link('extension/extension/payment/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, true),
+                        'uninstall' => $this->url->link('extension/extension/payment/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, true),
+                        'installed' => in_array($extension, $extensions),
+                        'edit' => $this->url->link('extension/payment/' . $extension, 'token=' . $this->session->data['token'], true)
+                    );
+                }
+            }
+        }
+
 
 		$this->response->setOutput($this->load->view('extension/extension/payment', $data));
 	}

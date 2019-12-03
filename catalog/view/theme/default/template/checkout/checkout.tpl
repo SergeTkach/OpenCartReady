@@ -655,7 +655,6 @@ $(document).delegate('#button-guest-shipping', 'click', function() {
                 location = json['redirect'];
             } else if (json['error']) {
                 $('#button-guest-shipping').button('reset');
-
                 if (json['error']['warning']) {
                     $('#collapse-shipping-address .panel-body').prepend('<div class="alert alert-danger">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }
@@ -765,7 +764,7 @@ $(document).delegate('#button-payment-method', 'click', function() {
                 location = json['redirect'];
             } else if (json['error']) {
                 $('#button-payment-method').button('reset');
-                
+
                 if (json['error']['warning']) {
                     $('#collapse-payment-method .panel-body').prepend('<div class="alert alert-danger">' + json['error']['warning'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
                 }

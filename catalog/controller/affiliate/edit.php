@@ -230,7 +230,7 @@ class ControllerAffiliateEdit extends Controller {
 		}
 
 		if (isset($this->request->post['country_id'])) {
-			$data['country_id'] = $this->request->post['country_id'];
+			$data['country_id'] = (int)$this->request->post['country_id'];
 		} elseif (!empty($affiliate_info)) {
 			$data['country_id'] = $affiliate_info['country_id'];
 		} else {
@@ -270,7 +270,7 @@ class ControllerAffiliateEdit extends Controller {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
+		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match($this->config->get('config_mail_regexp'), $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 

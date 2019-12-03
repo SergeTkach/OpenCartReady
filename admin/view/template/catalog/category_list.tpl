@@ -57,7 +57,11 @@
                     <?php } else { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $category['category_id']; ?>" />
                     <?php } ?></td>
-                  <td class="text-left"><?php echo $category['name']; ?></td>
+                    <?php if ($category['href']) { ?>
+                    <td class="left"><?php echo $category['indent']; ?><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>&nbsp;&nbsp;<i class="fa fa-sort-desc"></i></td>
+                  <?php } else { ?>
+                    <td class="left"><?php echo $category['indent']; ?><?php echo $category['name']; ?></td>
+                  <?php } ?>
                   <td class="text-right"><?php echo $category['sort_order']; ?></td>
                   <td class="text-right"><a href="<?php echo $category['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
@@ -71,10 +75,6 @@
             </table>
           </div>
         </form>
-        <div class="row">
-          <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
-          <div class="col-sm-6 text-right"><?php echo $results; ?></div>
-        </div>
       </div>
     </div>
   </div>

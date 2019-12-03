@@ -23,6 +23,18 @@ $_['library_autoload'] = array(
 	'openbay'
 );
 
+$registry = new Registry();
+$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+$registry->set('db', $db);
+
+$query = $db->query("SELECT value FROM " . DB_PREFIX . "setting WHERE store_id = '0' AND `key`='config_seo_url_type'");
+
+if ($query->num_rows) {
+  $seo_type = $query->row['value'];
+}else{
+  $seo_type = 'seo_url';
+}
+
 // Actions
 $_['action_pre_action'] = array(
 	'startup/session',
@@ -30,7 +42,7 @@ $_['action_pre_action'] = array(
 	'startup/error',
 	'startup/event',
 	'startup/maintenance',
-	'startup/seo_url'
+    'startup/'.$seo_type
 );
 
 // Action Events

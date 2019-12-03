@@ -40,7 +40,7 @@ class ModelCatalogReview extends Model {
 			$emails = explode(',', $this->config->get('config_alert_email'));
 
 			foreach ($emails as $email) {
-				if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				if ($email && preg_match($this->config->get('config_mail_regexp'), $email)) {
 					$mail->setTo($email);
 					$mail->send();
 				}

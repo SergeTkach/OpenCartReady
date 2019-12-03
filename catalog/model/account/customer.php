@@ -84,7 +84,7 @@ class ModelAccountCustomer extends Model {
 			$emails = explode(',', $this->config->get('config_alert_email'));
 
 			foreach ($emails as $email) {
-				if (utf8_strlen($email) > 0 && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				if (utf8_strlen($email) > 0 && preg_match($this->config->get('config_mail_regexp'), $email)) {
 					$mail->setTo($email);
 					$mail->send();
 				}

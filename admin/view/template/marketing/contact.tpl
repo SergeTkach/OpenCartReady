@@ -85,16 +85,19 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-message"><?php echo $entry_message; ?></label>
             <div class="col-sm-10">
-              <textarea name="message" placeholder="<?php echo $entry_message; ?>" id="input-message" class="form-control summernote"></textarea>
+              <textarea name="message" placeholder="<?php echo $entry_message; ?>" id="input-message" data-lang="<?php echo $lang; ?>" class="form-control summernote"></textarea>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
-  <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
-  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>  
+
+  <script type="text/javascript"><!--
+    <?php if ($ckeditor) { ?>
+      ckeditorInit('input-message', getURLVar('token'));
+    <?php } ?>
+  //--></script>
   <script type="text/javascript"><!--
 $('select[name=\'to\']').on('change', function() {
 	$('.to').hide();
@@ -193,6 +196,10 @@ $('#input-product').parent().find('.well').delegate('.fa-minus-circle', 'click',
 });
 
 function send(url) {
+	<?php if ($ckeditor) { ?>
+	$('textarea[name=\'message\']').val(CKEDITOR.instances['input-message'].getData());
+	<?php } ?>
+
 	$.ajax({
 		url: url,
 		type: 'post',
@@ -228,7 +235,7 @@ function send(url) {
 			if (json['success']) {
 				$('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i>  ' + json['success'] + '</div>');
 			}
-				
+
 			if (json['next']) {
 				send(json['next']);
 			}

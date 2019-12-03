@@ -205,7 +205,7 @@ $('#button-filter').on('click', function() {
 
 	location = url;
 });
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 $('input[name=\'filter_customer\']').autocomplete({
 	'source': function(request, response) {
@@ -226,7 +226,7 @@ $('input[name=\'filter_customer\']').autocomplete({
 		$('input[name=\'filter_customer\']').val(item['label']);
 	}
 });
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 $('input[name^=\'selected\']').on('change', function() {
 	$('#button-shipping, #button-invoice').prop('disabled', true);
@@ -257,7 +257,7 @@ $('#button-shipping, #button-invoice').on('click', function(e) {
 
 $('#button-delete').on('click', function(e) {
 	$('#form-order').attr('action', this.getAttribute('formAction'));
-	
+
 	if (confirm('<?php echo $text_confirm; ?>')) {
 		$('#form-order').submit();
 	} else {
@@ -272,4 +272,4 @@ $('.date').datetimepicker({
 	pickTime: false
 });
 //--></script></div>
-<?php echo $footer; ?> 
+<?php echo $footer; ?>

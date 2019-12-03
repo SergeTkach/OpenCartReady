@@ -33,10 +33,12 @@ class ControllerProductManufacturer extends Controller {
 		$results = $this->model_catalog_manufacturer->getManufacturers();
 
 		foreach ($results as $result) {
-			if (is_numeric(utf8_substr($result['name'], 0, 1))) {
+			$name = $result['name'];
+
+			if (is_numeric(utf8_substr($name, 0, 1))) {
 				$key = '0 - 9';
 			} else {
-				$key = utf8_substr(utf8_strtoupper($result['name']), 0, 1);
+				$key = utf8_substr(utf8_strtoupper($name), 0, 1);
 			}
 
 			if (!isset($data['categories'][$key])) {
@@ -44,7 +46,7 @@ class ControllerProductManufacturer extends Controller {
 			}
 
 			$data['categories'][$key]['manufacturer'][] = array(
-				'name' => $result['name'],
+				'name' => $name,
 				'href' => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
 			);
 		}
@@ -140,7 +142,29 @@ class ControllerProductManufacturer extends Controller {
 				'href' => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url)
 			);
 
-			$data['heading_title'] = $manufacturer_info['name'];
+			if ($manufacturer_info['meta_title']) {
+				$this->document->setTitle($manufacturer_info['meta_title']);
+			} else {
+				$this->document->setTitle($manufacturer_info['name']);
+			}
+
+			$this->document->setDescription($manufacturer_info['meta_description']);
+			$this->document->setKeywords($manufacturer_info['meta_keyword']);
+
+			if ($manufacturer_info['meta_h1']) {
+				$data['heading_title'] = $manufacturer_info['meta_h1'];
+			} else {
+				$data['heading_title'] = $manufacturer_info['name'];
+			}
+
+			if ($manufacturer_info['image']) {
+				$data['thumb'] = $this->model_tool_image->resize($manufacturer_info['image'], $this->config->get($this->config->get('config_theme') . '_image_category_width'), $this->config->get($this->config->get('config_theme') . '_image_category_height'));
+				$this->document->setOgImage($data['thumb']);
+			} else {
+				$data['thumb'] = '';
+			}
+
+			$data['description'] = html_entity_decode($manufacturer_info['description'], ENT_QUOTES, 'UTF-8');
 
 			$data['text_empty'] = $this->language->get('text_empty');
 			$data['text_quantity'] = $this->language->get('text_quantity');
@@ -215,8 +239,8 @@ class ControllerProductManufacturer extends Controller {
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
-					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
-					'rating'      => $result['rating'],
+					'minimum'     => ($result['minimum'] > 0) ? $result['minimum'] : 1,
+					'rating'      => $rating,
 					'href'        => $this->url->link('product/product', 'manufacturer_id=' . $result['manufacturer_id'] . '&product_id=' . $result['product_id'] . $url)
 				);
 			}

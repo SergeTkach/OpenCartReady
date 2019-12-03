@@ -52,7 +52,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-description<?php echo $language['language_id']; ?>"><?php echo $entry_description; ?></label>
                   <div class="col-sm-10">
-                    <textarea name="module_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($module_description[$language['language_id']]['description']) ? $module_description[$language['language_id']]['description'] : ''; ?></textarea>
+                    <textarea name="module_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>" data-lang="<?php echo $lang; ?>" class="form-control summernote"><?php echo isset($module_description[$language['language_id']]['description']) ? $module_description[$language['language_id']]['description'] : ''; ?></textarea>
                   </div>
                 </div>
               </div>
@@ -77,9 +77,13 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
-  <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
-  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>  
+  <script type="text/javascript"><!--
+<?php foreach ($languages as $language) { ?>
+<?php if ($ckeditor) { ?>
+ckeditorInit('input-description<?php echo $language['language_id']; ?>', getURLVar('token'));
+<?php } ?>
+<?php } ?>
+//--></script> 
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');
 //--></script></div>
