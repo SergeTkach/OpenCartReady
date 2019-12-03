@@ -1,0 +1,135 @@
+# ==========================================================
+# HOSTING
+# ==========================================================
+
+# ---------------------------------------
+# webstat
+# ---------------------------------------
+/webstat/*
+
+# ---------------------------------------
+# apache
+# ---------------------------------------
+/.htaccess
+#/.htaccess*
+/php.ini
+
+# ---------------------------------------
+# linux
+# ---------------------------------------
+/.directory
+/*/.directory
+
+
+
+
+# ==========================================================
+# OpenCart
+# ==========================================================
+
+# ---------------------------------------
+# Config
+# ---------------------------------------
+/config.php
+/admin/config.php
+
+# ---------------------------------------
+# Content
+# ---------------------------------------
+
+/image*
+!index.html
+!/image/catalog/index.html
+!/image/*/index.html
+
+# Images Cache
+/image/cache/*
+!image/cache/index.html
+
+# ---------------------------------------
+# Storage
+# ---------------------------------------
+
+# System
+/system/storage/*
+!system/storage/*/index.html
+
+# Download Files
+#system/storage/download/*
+#!system/storage/download/index.html
+
+# ---------------------------------------
+# Logs
+# ---------------------------------------
+#/system/storage/logs/*
+#!system/storage/logs/index.html
+
+# ---------------------------------------
+# TMP files
+# ---------------------------------------
+
+# Extension install
+#system/storage/upload/*
+#!system/storage/upload/index.html
+
+# Modifications
+#system/storage/modification/*
+#!system/storage/modification/index.html
+
+
+
+
+# ==========================================================
+# DEVELOPMENT
+# ==========================================================
+
+# ---------------------------------------
+# development log files
+/*.log
+
+# ---------------------------------------
+# development files
+/dev/*
+/dev*
+/info.php
+
+# ---------------------------------------
+# test
+/test/*
+/test.php
+/test*
+
+# ---------------------------------------
+# IDE Project files
+# ---------------------------------------
+
+# phpStorms
+/.idea
+
+# NetBeans
+/nbproject
+/nbproject/*
+
+# Sublime
+*.sublime-project
+
+# Visual Studio Code
+.vscode/
+
+# ---------------------------------------
+# Ignore all vendor files included by composer and the lock file
+# ---------------------------------------
+
+# Test Config File
+# /tests/phpunit/vendor/*
+# /tests/phpunit/composer.lock
+# /tests/phpunit/bootstrap.php
+
+# 
+# /vendor/*
+/node_modules/*
+
+# ---------------------------------------
+/.bowercc
+/gulpfile.js
+/package.json
