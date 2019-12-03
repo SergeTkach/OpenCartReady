@@ -53,8 +53,8 @@
 # You need to define all dirs separately (!)s
 
 # Cache Files
-system/storage/download/*
-!system/storage/download/index.html
+system/storage/cache/*
+!system/storage/cache/index.html
 
 # Download Files
 system/storage/download/*
@@ -71,10 +71,6 @@ system/storage/modification/*
 # Extension install
 system/storage/upload/*
 !system/storage/upload/index.html
-
-
-
-
 
 
 # ==========================================================
